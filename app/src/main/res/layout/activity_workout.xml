@@ -1,5 +1,158 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/tvCat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Κατηγορίες"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:textStyle="bold"/>
+
+    <Spinner
+        android:id="@+id/spChooseEx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/tvCat"
+        />
+
+    <LinearLayout
+        android:id="@+id/llquant"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_below="@+id/spChooseEx"
+        android:layout_marginTop="20dp"
+        >
+
+
+        <TextView
+            android:id="@+id/tvQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Χρόνος Άθλησης (σε λεπτά)"
+            android:lines="2"
+            android:layout_weight="0.6"
+            />
+
+
+
+        <EditText
+            android:id="@+id/etDuration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:editable="false"
+            android:layout_weight="0.4"
+            android:hint="10"
+            android:layout_gravity="center"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lltod"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        android:weightSum="1"
+        android:layout_below="@+id/llquant"
+        android:layout_marginTop="20dp"
+        >
+
+        <RadioButton
+            android:id="@+id/rbMorn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+
+            android:layout_marginLeft="15dp"
+            android:text="Πρωί"/>
+
+        <RadioButton
+            android:id="@+id/rbNoon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Μεσημέρι"/>
+
+        <RadioButton
+            android:id="@+id/rbNight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Απόγευμα"
+            android:layout_marginLeft="30dp"/>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/lldate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_below="@+id/lltod"
+        android:layout_marginTop="20dp"
+        >
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Ημερομηνία"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.2"/>
+
+        <ImageButton
+            android:id="@+id/imbtDate"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight=".8"
+            android:layout_marginRight="10dp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lldate"
+        android:layout_marginTop="35dp"
+        >
+
+        <Button
+            android:id="@+id/btBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Back"
+            android:textColor="#fefff7"
+            android:background="#e51616"
+            android:layout_marginRight="30dp"
+            android:layout_weight="0.7"/>
+
+        <Button
+            android:id="@+id/btOk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Ok"
+            android:textColor="#fefff7"
+            android:layout_marginLeft="30dp"
+            android:background="#adda55"
+            android:layout_weight="0.7"/>
+
+    </LinearLayout>
+</RelativeLayout>
