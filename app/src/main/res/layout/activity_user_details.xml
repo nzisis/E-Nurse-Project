@@ -1,5 +1,250 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+<LinearLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Προσωπικά στοιχεία"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:textStyle="italic"
+        android:textColor="#123582"
+        android:layout_marginTop="12dp"
+        />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:layout_marginBottom="3dp"
+        android:background="@drawable/line_separator"
+        android:id="@+id/view1"
+    />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:weightSum="1"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:text=" Όνομα :"
+            android:layout_weight="0.7"
+            android:textColor="#000000"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:ems="10"
+            android:textSize="25sp"
+            android:inputType="textPersonName"
+            android:hint="Νίκος"
+         />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:text=" Ηληκία :"
+            android:layout_weight="0.7"
+            android:textColor="#000000"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:ems="10"
+            android:textSize="25sp"
+            android:inputType="number"
+            android:hint="84"
+            />
+<!-- -->
+
+    </LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="40dp"
+    android:weightSum="1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:text=" Φύλλο :"
+            android:layout_weight="0.7"
+            android:textColor="#000000"
+        />
+
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text"
+        android:id="@+id/myRadioGroup"
+
+        android:layout_weight="0.3"
+        android:checkedButton="@+id/rd_male" >
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rd_male"
+        android:textSize="20sp"
+        android:text="'Ανδρας" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rd_woman"
+            android:textSize="20sp"
+            android:text="Γυναίκα" />
+
+    </RadioGroup>
+
 
 </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Σωματικά στοιχεία"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:textStyle="italic"
+        android:textColor="#123582"
+        android:layout_marginTop="30dp"
+        />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:layout_marginBottom="3dp"
+        android:background="@drawable/line_separator"
+        android:id="@+id/view2"
+        />
+
+
+   <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:weightSum="1">
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:textSize="25sp"
+           android:text=" Ύψος (cm) :"
+           android:layout_weight="0.6"
+           android:textColor="#000000"
+           />
+       <EditText
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_weight="0.4"
+           android:ems="10"
+           android:textSize="25sp"
+           android:inputType="number"
+           android:hint="180 "
+           />
+
+   </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:text=" Βάρος (kg) :"
+            android:layout_weight="0.6"
+            android:textColor="#000000"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:ems="10"
+            android:textSize="25sp"
+            android:inputType="number"
+            android:hint="85 "
+            />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ιστορικό παθήσεων"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:textStyle="italic"
+        android:textColor="#123582"
+        android:layout_marginTop="30dp"
+        />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:layout_marginBottom="3dp"
+        android:background="@drawable/line_separator"
+        android:id="@+id/view3"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text=" Συμπληρώστε τη φόρμα :"
+        android:layout_weight="0.7"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="3dp"
+        android:textColor="#000000"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.3"
+        android:ems="10"
+        android:textSize="25sp"
+        android:inputType="text"
+        android:hint=" π.χ. διαβήτης"
+        />
+
+
+
+
+</LinearLayout>
+
+
+</ScrollView>
