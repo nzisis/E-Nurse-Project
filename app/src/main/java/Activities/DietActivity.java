@@ -20,6 +20,10 @@ public class DietActivity extends Activity {
     private Button bDate;
     private Button bBack;
     private Button bOk;
+    private EditText quantField;
+    private Spinner spinner;
+    private ImageButton dateBut;
+    private ImageButton hourBut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,10 @@ public class DietActivity extends Activity {
         bDate = (Button) findViewById(R.id.imbtDate);
         bBack = (Button) findViewById(R.id.btBack);
         bOk = (Button) findViewById(R.id.btOk);
+        quantField = (EditText) findViewById(R.id.etQuant);
+        hourBut = (ImageButton) findViewById(R.id.imbtHour);
+        spinner = (Spinner) findViewById(R.id.spChoosFood);
+        dateBut = (ImageButton) findViewById(R.id.imbtDate);
     }
 
     public void initListeners(){
@@ -57,14 +65,14 @@ public class DietActivity extends Activity {
         bOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText editText = (EditText) findViewById(R.id.etQuant);
-                Double quantity = Double.valueOf(editText.getText().toString());
-                Spinner spinner = (Spinner) findViewById(R.id.spChoosFood);
+
+                Double quantity = Double.valueOf(quantField.getText().toString());
+
                 String foodName = spinner.getSelectedItem().toString();
-                ImageButton dateBut = (ImageButton) findViewById(R.id.imbtDate);
-                // TODO Get the date from the imButton
-                ImageButton hourBut = (ImageButton) findViewById(R.id.imbtHour);
-                // TODO Same as above
+
+                // TODO Get the date from the dateButton
+
+                // TODO Same as above for hourButton
             }
         });
     }
