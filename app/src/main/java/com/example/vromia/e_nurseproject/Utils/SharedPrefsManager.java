@@ -21,6 +21,7 @@ public class SharedPrefsManager {
     private static final String PREFS_BAROS = "baros";
     private static final String PREFS_ISTORIKOPATHISEON = "istorikoPathiseon";
     private static final String PREFS_FYLO = "fylo";
+    private static final String PREFS_START_OFF_APP="start of app";
 
     //the SharedPreferences and Editor objects
     SharedPreferences prefs;
@@ -44,6 +45,10 @@ public class SharedPrefsManager {
     /**
      * Below are the setters and getters for each attribute
      */
+    public boolean getPrefsStart(){
+        return prefs.getBoolean(PREFS_START_OFF_APP,false);
+    }
+
     public String getPrefsOnoma() {
         return prefs.getString(PREFS_ONOMA, "");
     }
@@ -86,6 +91,10 @@ public class SharedPrefsManager {
 
     public void setPrefsIstorikoPathiseon(String istorikoPthiseon) {
         editor.putString(PREFS_ISTORIKOPATHISEON, istorikoPthiseon);
+    }
+
+    public void setPrefsStart(boolean start){
+        editor.putBoolean(PREFS_START_OFF_APP,start);
     }
 
     public void setPrefsFylo(String fylo) {

@@ -2,9 +2,15 @@ package com.example.vromia.e_nurseproject;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.example.vromia.e_nurseproject.Activities.HomeActivity;
+import com.example.vromia.e_nurseproject.Activities.UserDetailsActivity;
+import com.example.vromia.e_nurseproject.Utils.SharedPrefsManager;
 
 
 public class MainActivity extends Activity {
@@ -12,7 +18,30 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        //setContentView(R.layout.activity_main);
+
+        //boolean isPass = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("PREFS_START_OFF_APP" , false);
+        SharedPrefsManager sharedPrefsManager=new SharedPrefsManager(MainActivity.this);
+
+        boolean pass=sharedPrefsManager.getPrefsStart();
+
+        if(pass){
+
+            startActivity(new Intent(MainActivity.this, HomeActivity.class));
+            this.finish();
+
+        }else{
+
+            sharedPrefsManager.startEditing();
+            sharedPrefsManager.setPrefsStart(true);
+            sharedPrefsManager.commit();
+
+            startActivity(new Intent(MainActivity.this, UserDetailsActivity.class));
+            this.finish();
+        }
+
+
+
     }
 
 
