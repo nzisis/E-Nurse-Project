@@ -24,6 +24,7 @@
          />
 
     <LinearLayout
+        android:id="@+id/llquant"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -60,75 +61,109 @@
 
         </LinearLayout>
 
-
-
-   <!--
-
-    <TextView
-        android:id="@+id/tvHour"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/llhour"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Ώρα γεύματος"
-        android:layout_marginTop="50dp"
-        android:layout_below="@+id/etNumofHours"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_below="@+id/llquant"
+        android:layout_marginTop="20dp"
+        >
 
-    <TextView
-        android:id="@+id/tvDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Ημερομηνία"
-        android:layout_marginTop="50dp"
-        android:layout_below="@+id/tvHour"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <TextView
+            android:id="@+id/tvHour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Ώρα γεύματος"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.2"
+            />
 
-    <Button
-        android:id="@+id/btOk"
-        android:layout_width="wrap_content"
+        <ImageButton
+            android:id="@+id/imbtPlaceholder"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="0.8"
+            android:layout_marginRight="10dp"
+             />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lldate"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Οκ"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_below="@+id/llhour"
+        android:layout_marginTop="20dp"
+        >
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Ημερομηνία"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.2"/>
+
+        <ImageButton
+            android:id="@+id/imbtPlaceholder2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight=".8"
+            android:layout_marginRight="10dp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/etNumofHours"
-        android:layout_alignEnd="@+id/etNumofHours"
-        android:layout_marginBottom="63dp"
-        android:layout_alignLeft="@+id/etNumofHours"
-        android:layout_alignStart="@+id/etNumofHours" />
+        >
 
-    <Button
-        android:id="@+id/btBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Back"
-        android:layout_alignBottom="@+id/btOk"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/tvCat"
-        android:layout_toStartOf="@+id/tvCat" />
+        <Button
+            android:id="@+id/btBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back"
+            android:layout_weight="0.5"/>
 
-    <ImageButton
-        android:id="@+id/imbtPlaceholder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/tvHour"
-        android:layout_alignLeft="@+id/etNumofHours"
-        android:layout_alignStart="@+id/etNumofHours"
-        android:layout_alignBottom="@+id/tvHour"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        <Button
+            android:id="@+id/btOk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ok"
+            android:layout_weight="0.5"/>
 
-    <ImageButton
-        android:id="@+id/imbtPlaceholder2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/tvDate"
-        android:layout_alignLeft="@+id/etNumofHours"
-        android:layout_alignStart="@+id/etNumofHours"
-        android:layout_alignBottom="@+id/tvDate"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
--->
+        </LinearLayout>
+
+    <!--
+
+     <Button
+         android:id="@+id/btOk"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="Οκ"
+         android:layout_alignParentBottom="true"
+         android:layout_alignRight="@+id/etNumofHours"
+         android:layout_alignEnd="@+id/etNumofHours"
+         android:layout_marginBottom="63dp"
+         android:layout_alignLeft="@+id/etNumofHours"
+         android:layout_alignStart="@+id/etNumofHours" />
+
+     <Button
+         android:id="@+id/btBack"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="Back"
+         android:layout_alignBottom="@+id/btOk"
+         android:layout_alignParentLeft="true"
+         android:layout_alignParentStart="true"
+         android:layout_toLeftOf="@+id/tvCat"
+         android:layout_toStartOf="@+id/tvCat" />
+
+ -->
 </RelativeLayout>
