@@ -1,4 +1,4 @@
-package Activities;
+package com.example.vromia.e_nurseproject.Activities;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -39,7 +39,7 @@ public class DietActivity extends Activity {
         bOk = (Button) findViewById(R.id.btOk);
         quantField = (EditText) findViewById(R.id.etQuant);
         hourBut = (ImageButton) findViewById(R.id.imbtHour);
-        spinner = (Spinner) findViewById(R.id.spChoosFood);
+        spinner = (Spinner) findViewById(R.id.spChooseFood);
         dateBut = (ImageButton) findViewById(R.id.imbtDate);
     }
 

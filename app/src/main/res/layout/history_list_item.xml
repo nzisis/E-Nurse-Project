@@ -1,5 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-</LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvCategory"
+        android:text="Category"
+        android:textSize="35sp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:textStyle="italic"
+        android:textColor="#c61236"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvAmount"
+        android:layout_below="@+id/tvCategory"
+        android:text="Amount"
+        android:textSize="30sp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="25dp"
+        android:textStyle="italic"
+        android:textColor="#123582"
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvDate"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="Date"
+        android:textSize="30sp"
+        android:textStyle="italic"
+        android:layout_marginRight="35dp"
+        android:layout_marginTop="25dp"
+        android:textColor="#f7a22e"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvHour"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tvDate"
+        android:text="Hour"
+        android:layout_marginRight="35dp"
+        android:layout_marginTop="30dp"
+        android:textSize="30sp"
+        android:textStyle="italic"
+        android:textColor="#238341"
+        />
+
+
+</RelativeLayout>

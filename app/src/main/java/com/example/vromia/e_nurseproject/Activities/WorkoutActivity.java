@@ -1,4 +1,4 @@
-package Activities;
+package com.example.vromia.e_nurseproject.Activities;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+
+import com.example.vromia.e_nurseproject.R;
 
 /**
  * Created by Vromia on 17/12/2014.
