@@ -13,7 +13,8 @@
         android:text="Κατηγορίες"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp" />
+        android:layout_marginTop="15dp"
+        android:textStyle="bold"/>
 
     <Spinner
         android:id="@+id/spChooseFood"
@@ -42,7 +43,6 @@
              android:lines="2"
             android:layout_weight="0.6"
             android:textStyle="italic"
-            android:textColor="#691414"
        />
 
 
@@ -82,7 +82,7 @@
             />
 
         <ImageButton
-            android:id="@+id/imbtPlaceholder"
+            android:id="@+id/imbtHour"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="0.8"
@@ -110,7 +110,7 @@
             android:layout_weight="0.2"/>
 
         <ImageButton
-            android:id="@+id/imbtPlaceholder2"
+            android:id="@+id/imbtDate"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight=".8"
@@ -121,49 +121,31 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/lldate"
+        android:layout_marginTop="35dp"
         >
 
         <Button
             android:id="@+id/btBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Back"
-            android:layout_weight="0.5"/>
+            android:textColor="#fefff7"
+            android:background="#e51616"
+            android:layout_marginRight="30dp"
+            android:layout_weight="0.7"/>
 
         <Button
             android:id="@+id/btOk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Ok"
-            android:layout_weight="0.5"/>
+            android:textColor="#fefff7"
+            android:layout_marginLeft="30dp"
+            android:background="#adda55"
+            android:layout_weight="0.7"/>
 
         </LinearLayout>
-
-    <!--
-
-     <Button
-         android:id="@+id/btOk"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:text="Οκ"
-         android:layout_alignParentBottom="true"
-         android:layout_alignRight="@+id/etNumofHours"
-         android:layout_alignEnd="@+id/etNumofHours"
-         android:layout_marginBottom="63dp"
-         android:layout_alignLeft="@+id/etNumofHours"
-         android:layout_alignStart="@+id/etNumofHours" />
-
-     <Button
-         android:id="@+id/btBack"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:text="Back"
-         android:layout_alignBottom="@+id/btOk"
-         android:layout_alignParentLeft="true"
-         android:layout_alignParentStart="true"
-         android:layout_toLeftOf="@+id/tvCat"
-         android:layout_toStartOf="@+id/tvCat" />
-
- -->
 </RelativeLayout>
