@@ -23,7 +23,6 @@ import com.example.vromia.e_nurseproject.R;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 
 /**
@@ -52,16 +51,15 @@ public class DietActivity extends FragmentActivity {
         initUI();
         initListeners();
 
-        //TODO how to add to spinner a string of array
-        String categories[]=Resources.getSystem().getStringArray(R.array.categories);
-        List<String> foodlist = new ArrayList<String>();
-        for (String foodie : categories ){
-            foodlist.add(foodie);
+
+        String categories[]=getResources().getStringArray(R.array.categories);
+        ArrayList<String> finalCategories=new ArrayList<>();
+        for(int i=0; i<categories.length; i++){
+            finalCategories.add(categories[i]);
         }
-        ArrayAdapter adapter=new ArrayAdapter(DietActivity.this,R.layout.activity_diet,foodlist);
+        ArrayAdapter adapter=new ArrayAdapter(DietActivity.this,R.layout.spinner_item,R.id.tvSpinnerCategories,finalCategories);
         spinner.setAdapter(adapter);
 
-        /*
         Calendar  c = Calendar.getInstance();
         cdate= CalendarDatePickerDialog.newInstance(listener,
                 c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
@@ -83,9 +81,10 @@ public class DietActivity extends FragmentActivity {
         timeDialog = RadialTimePickerDialog.newInstance(timelistener, c.getTime().getHours(), c.getTime().getMinutes(), true);
 
 
-        //TODO initialize variable hour to current
 
-                */
+
+        hour=c.get(Calendar.HOUR_OF_DAY)+c.get(Calendar.MINUTE)+"";
+
     }
 
     public void initUI( ){

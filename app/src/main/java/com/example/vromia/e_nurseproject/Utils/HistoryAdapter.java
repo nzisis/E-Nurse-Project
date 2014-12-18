@@ -34,12 +34,27 @@ public class HistoryAdapter extends CursorAdapter {
         TextView tvHour=(TextView) view.findViewById(R.id.tvHour);
         TextView tvAmount=(TextView) view.findViewById(R.id.tvAmount);
 
+        tvCategory.setText(cursor.getString(1));
+        tvDate.setText(cursor.getString(2));
+        tvHour.setText(cursor.getString(4));
+        tvAmount.setText(cursor.getString(3));
 
-        return null;
+
+
+        return view;
     }
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
+        TextView tvCategory=(TextView) view.findViewById(R.id.tvCategory);
+        TextView tvDate=(TextView) view.findViewById(R.id.tvDate);
+        TextView tvHour=(TextView) view.findViewById(R.id.tvHour);
+        TextView tvAmount=(TextView) view.findViewById(R.id.tvAmount);
+
+        tvCategory.setText(cursor.getString(1));
+        tvDate.setText(cursor.getString(2));
+        tvHour.setText(cursor.getString(4));
+        tvAmount.setText(cursor.getString(3));
 
     }
 

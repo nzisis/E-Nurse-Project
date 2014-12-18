@@ -3,6 +3,7 @@ package com.example.vromia.e_nurseproject.Activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,6 +11,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.example.vromia.e_nurseproject.R;
+import com.example.vromia.e_nurseproject.Utils.SharedPrefsManager;
 
 
 /**
@@ -72,6 +74,18 @@ public class UserDetailsActivity extends Activity {
                 Sypsos = String.valueOf(ypsos.getText());
                 Sbaros = String.valueOf(baros.getText());
                 SistorikoPathiseon = String.valueOf(istorikoPathiseon.getText());
+                SharedPrefsManager spmanager=new SharedPrefsManager(UserDetailsActivity.this);
+                spmanager.startEditing();
+                //setaro
+                spmanager.setPrefsOnoma(Sonoma);
+                spmanager.setPrefsIlikia(Integer.parseInt(Silikia));
+                spmanager.setPrefsYpsos(Float.parseFloat(Sypsos));
+                spmanager.setPrefsBaros(Float.parseFloat(Sbaros));
+                spmanager.setPrefsIstorikoPathiseon(SistorikoPathiseon);
+                spmanager.setPrefsFylo(Sfylo);
+
+                spmanager.commit();
+                Log.i("Onoma",Sonoma);
             }
         });
     }
