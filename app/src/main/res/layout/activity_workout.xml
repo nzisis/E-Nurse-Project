@@ -65,11 +65,11 @@
         android:id="@+id/lltod"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center_horizontal"
-        android:weightSum="1"
         android:layout_below="@+id/llquant"
         android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:weightSum="1"
         >
 
         <RadioButton
@@ -102,10 +102,10 @@
         android:id="@+id/lldate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="1"
         android:layout_below="@+id/lltod"
         android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:weightSum="1"
         >
 
         <TextView
@@ -123,10 +123,13 @@
             android:layout_height="50dp"
             android:layout_weight=".8"
             android:layout_marginRight="10dp"
+
             />
+
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/llbuttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/lldate"
