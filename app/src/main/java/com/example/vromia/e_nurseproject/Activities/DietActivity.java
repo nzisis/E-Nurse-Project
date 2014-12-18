@@ -21,7 +21,9 @@ import com.example.vromia.e_nurseproject.Data.DietItem;
 import com.example.vromia.e_nurseproject.Data.HeathDatabase;
 import com.example.vromia.e_nurseproject.R;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 
 /**
@@ -52,9 +54,14 @@ public class DietActivity extends FragmentActivity {
 
         //TODO how to add to spinner a string of array
         String categories[]=Resources.getSystem().getStringArray(R.array.categories);
-        ArrayAdapter adapter=new ArrayAdapter(DietActivity.this,R.layout.activity_diet,categories);
+        List<String> foodlist = new ArrayList<String>();
+        for (String foodie : categories ){
+            foodlist.add(foodie);
+        }
+        ArrayAdapter adapter=new ArrayAdapter(DietActivity.this,R.layout.activity_diet,foodlist);
         spinner.setAdapter(adapter);
 
+        /*
         Calendar  c = Calendar.getInstance();
         cdate= CalendarDatePickerDialog.newInstance(listener,
                 c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
@@ -78,6 +85,7 @@ public class DietActivity extends FragmentActivity {
 
         //TODO initialize variable hour to current
 
+                */
     }
 
     public void initUI( ){
