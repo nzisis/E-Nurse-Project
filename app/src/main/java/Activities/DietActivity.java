@@ -2,9 +2,10 @@ package Activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
-import com.example.vromia.e_nurseproject.R;
+import com.example.vromia.e_nurseproject.*;
 
 /**
  * Created by Vromia on 17/12/2014.
@@ -31,6 +32,29 @@ public class DietActivity extends Activity {
     }
 
     public void initListeners(){
+        bHour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
+        bDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        bBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        bOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 }
