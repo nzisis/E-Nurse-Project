@@ -82,8 +82,18 @@ public class DietActivity extends FragmentActivity {
 
 
 
-
-        hour=c.get(Calendar.HOUR_OF_DAY)+c.get(Calendar.MINUTE)+"";
+        int temp_hour = Calendar.HOUR_OF_DAY;
+        int temp_min = Calendar.MINUTE;
+        String temp_hour_fixed,temp_min_fixed;
+        if (temp_hour < 10){
+            temp_hour_fixed="0"+String.valueOf(temp_hour); }
+        else {
+            temp_hour_fixed=String.valueOf(temp_hour); }
+        if (temp_min < 10){
+            temp_min_fixed="0"+String.valueOf(temp_min); }
+        else {
+            temp_min_fixed=String.valueOf(temp_min); }
+        hour= temp_hour_fixed+":"+temp_min_fixed;
 
     }
 
@@ -120,7 +130,7 @@ public class DietActivity extends FragmentActivity {
         bOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                double quantity=-1;
+                double quantity=1;
                 try {
                   quantity = Double.valueOf(quantField.getText().toString());
                 }catch (NumberFormatException e){
@@ -130,6 +140,7 @@ public class DietActivity extends FragmentActivity {
 
                 HeathDatabase db=new HeathDatabase(DietActivity.this);//instance of current database
                 Log.i("Msg",date);
+                Log.i("msg",String.valueOf(hour));
                 DietItem item=new DietItem(foodName,date,quantity,hour);
                 db.InsertDiet(item);
                 db.close();
@@ -164,6 +175,7 @@ public class DietActivity extends FragmentActivity {
         public void onTimeSet(RadialPickerLayout radialPickerLayout, int i, int i2) {
           //Check this
            hour= i+"-"+i2;
+            Log.i("msg",hour);
 
         }
     };
