@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Created by Vromia on 17/12/2014.
@@ -69,6 +70,11 @@ public class HeathDatabase extends SQLiteOpenHelper{
         cv.put(Key_Category,item.getCategory());
         cv.put(Key_Date,item.getDate());
         cv.put(Key_Time,item.getTime());
+
+        Log.i("Category",item.getCategory());
+        Log.i("Amount",item.getAmount()+"");
+        Log.i("Time",item.getTime());
+        Log.i("Date",item.getDate());
 
 
 

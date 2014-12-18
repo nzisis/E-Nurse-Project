@@ -7,6 +7,7 @@ import android.widget.ListView;
 
 import com.example.vromia.e_nurseproject.Data.HeathDatabase;
 import com.example.vromia.e_nurseproject.R;
+import com.example.vromia.e_nurseproject.Utils.HistoryAdapter;
 
 
 /**
@@ -17,6 +18,7 @@ public class HistoryActivity extends Activity {
     private ListView lv;
     private HeathDatabase db;
     private Cursor cursor;
+    private HistoryAdapter adapter;
 
 
     @Override
@@ -30,10 +32,8 @@ public class HistoryActivity extends Activity {
         cursor=db.getAllDietItems();
 
         startManagingCursor(cursor);
-
-
-
-
+        adapter = new HistoryAdapter(getApplicationContext() , cursor);
+        lv.setAdapter(adapter);
 
     }
 }

@@ -6,8 +6,8 @@
     <string name="action_settings">Settings</string>
 
     <string-array name="categories">
-        <item>Λευκό κρέας</item>
-        <item>Κόκκινο κρέας</item>
+        <item>Κοτόπουλο</item>
+        <item>Χοιρινό</item>
         <item>Όσπρια</item>
         <item>Ζυμαρικά</item>
     </string-array>
