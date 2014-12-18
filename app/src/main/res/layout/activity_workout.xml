@@ -82,23 +82,24 @@
             android:id="@+id/rbMorn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="30dp"
-
-            android:layout_marginLeft="15dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_marginRight="15dp"
             android:text="Πρωί"/>
 
         <RadioButton
             android:id="@+id/rbNoon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Μεσημέρι"/>
 
         <RadioButton
             android:id="@+id/rbNight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Απόγευμα"
-            android:layout_marginLeft="30dp"/>
+            android:text="Βράδυ"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_marginLeft="15dp"/>
     </LinearLayout>
 
 
