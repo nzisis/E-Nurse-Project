@@ -70,6 +70,8 @@ public class HeathDatabase extends SQLiteOpenHelper{
         cv.put(Key_Date,item.getDate());
         cv.put(Key_Time,item.getTime());
 
+
+
         db.insert(Table_Diet,null,cv);
 
     }
