@@ -61,7 +61,7 @@ public class UserDetailsActivity extends Activity {
         btBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //edo tha pigainei sto home
+                finish();
             }
         });
 
@@ -85,7 +85,14 @@ public class UserDetailsActivity extends Activity {
                 spmanager.setPrefsFylo(Sfylo);
 
                 spmanager.commit();
-                Log.i("Onoma",Sonoma);
+/*
+                Log.i("Onoma",spmanager.getPrefsOnoma());
+                Log.i("ilikia",spmanager.getPrefsIlikia()+"");
+                Log.i("ypsos",spmanager.getYpsos()+"");
+                Log.i("Baros",spmanager.getPrefsBaros()+"");
+                Log.i("Istoriko",spmanager.getPrefsIstorikoPathiseon());
+                Log.i("sex",spmanager.getPrefsFylo());
+*/
             }
         });
     }

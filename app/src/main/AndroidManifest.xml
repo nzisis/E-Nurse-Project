@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".Activities.HistoryActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,9 +19,9 @@
             </intent-filter>
         </activity>
        <activity android:name=".Activities.DietActivity"/>
-        <!--<activity android:name=".Activities.HistoryActivity"/>-->
+        <activity android:name=".Activities.HistoryActivity"/>
         <activity android:name=".Activities.HomeActivity"/>
-        <activity android:name=".Activities.UserDetailsActivity"/>
+       <activity android:name=".Activities.UserDetailsActivity"/>
         <activity android:name=".Activities.WorkoutActivity"/>
     </application>
 
