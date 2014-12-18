@@ -4,8 +4,12 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.Spinner;
 
-import com.example.vromia.e_nurseproject.*;
+import com.example.vromia.e_nurseproject.R;
+
 
 /**
  * Created by Vromia on 17/12/2014.
@@ -53,7 +57,14 @@ public class DietActivity extends Activity {
         bOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                EditText editText = (EditText) findViewById(R.id.etQuant);
+                Double quantity = Double.valueOf(editText.getText().toString());
+                Spinner spinner = (Spinner) findViewById(R.id.spChoosFood);
+                String foodName = spinner.getSelectedItem().toString();
+                ImageButton dateBut = (ImageButton) findViewById(R.id.imbtDate);
+                // TODO Get the date from the imButton
+                ImageButton hourBut = (ImageButton) findViewById(R.id.imbtHour);
+                // TODO Same as above
             }
         });
     }
