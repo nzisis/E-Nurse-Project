@@ -20,7 +20,7 @@
 
     <string-array name="actions">
         <item>Ιστορικό</item>
-        <item>Στοιχεία Χρήστη</item>
+        <item>Στοιχεία</item>
         <item>E-Nurse</item>
         <item>Εξαγωγή</item>
         <item>Έξοδος</item>

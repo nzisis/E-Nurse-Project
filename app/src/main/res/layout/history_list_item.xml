@@ -4,6 +4,80 @@
     android:background="#000000"
     >
 
+
+
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="Date"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="10sp"
+        android:padding="5dp"
+        android:textStyle="bold"
+        android:textColor="#f7a22e"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+      android:id="@+id/tvHour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/tvDate"
+        android:text="Hour"
+        android:textSize="10sp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:padding="5dp"
+        android:textStyle="bold"
+        android:textColor="#238341"
+        />
+
+    <TextView
+        android:id="@+id/tvCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/tvDate"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="35dp"
+        android:layout_alignParentTop="true"
+        android:text="Category"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:padding="5dp"
+        android:textColor="#c61236"
+        />
+
+    <TextView
+        android:id="@+id/tvAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lines="2"
+        android:ellipsize="end"
+        android:layout_marginRight="20dp"
+        android:layout_toLeftOf="@id/tvHour"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:text="These are some notes"
+        android:textColor="#123582"
+        android:padding="5dp"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        />
+
+
+    <!--
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -58,5 +132,5 @@
         android:textColor="#238341"
         />
 
-
+-->
 </RelativeLayout>
