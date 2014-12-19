@@ -36,9 +36,6 @@ public class DietActivity extends FragmentActivity {
     private Button bOk;
     private EditText quantField;
     private Spinner spinner;
-    private ImageButton dateBut;
-    private ImageButton hourBut;
-
     private CalendarDatePickerDialog cdate;//gui for showing date
     private RadialTimePickerDialog timeDialog;//gui for showing date
     private String date,hour;
@@ -101,9 +98,7 @@ public class DietActivity extends FragmentActivity {
         bBack = (Button) findViewById(R.id.btBack);
         bOk = (Button) findViewById(R.id.btOk);
         quantField = (EditText) findViewById(R.id.etQuant);
-        hourBut = (ImageButton) findViewById(R.id.imbtHour);
         spinner = (Spinner) findViewById(R.id.spChooseFood);
-        dateBut = (ImageButton) findViewById(R.id.imbtDate);
     }
 
     public void initListeners(){

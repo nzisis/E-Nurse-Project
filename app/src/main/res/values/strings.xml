@@ -13,10 +13,9 @@
     </string-array>
 
     <string-array name="workoutNames">
-        <item>Κοτόπουλο</item>
-        <item>Χοιρινό</item>
-        <item>Όσπρια</item>
-        <item>Ζυμαρικά</item>
+        <item>Αερόβια</item>
+        <item>Αναερόβια</item>
+        <item>Sex</item>
     </string-array>
 
     <string-array name="actions">

@@ -80,26 +80,24 @@
 
         <RadioButton
             android:id="@+id/rbMorn"
+            android:text="Πρωί"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_marginRight="15dp"
-            android:text="Πρωί"/>
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
 
         <RadioButton
             android:id="@+id/rbNoon"
+            android:text="Μεσημέρι"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Μεσημέρι"/>
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
 
         <RadioButton
             android:id="@+id/rbNight"
+            android:text="Βράδυ"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Βράδυ"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_marginLeft="15dp"/>
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
     </LinearLayout>
 
 
