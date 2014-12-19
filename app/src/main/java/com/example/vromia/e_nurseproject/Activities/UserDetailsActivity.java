@@ -70,11 +70,25 @@ public class UserDetailsActivity extends Activity {
             @Override
             public void onClick(View v) {
                 String Sonoma, Silikia, Sypsos, Sbaros, SistorikoPathiseon,Semail;
+
+
+
                 Sonoma = String.valueOf(onoma.getText());
                 Silikia = String.valueOf(ilikia.getText());
                 Sypsos = String.valueOf(ypsos.getText());
                 Sbaros = String.valueOf(baros.getText());
                 Semail = String.valueOf(email.getText());
+
+                if(Silikia.equals("")){
+                    Silikia="0";
+                }
+                if(Sypsos.equals("")){
+                    Sypsos="0";
+                }
+                if(Sbaros.equals("")){
+                    Sbaros="0";
+                }
+
                 SistorikoPathiseon = String.valueOf(istorikoPathiseon.getText());
                 SharedPrefsManager spmanager=new SharedPrefsManager(UserDetailsActivity.this);
                 spmanager.startEditing();
@@ -88,6 +102,7 @@ public class UserDetailsActivity extends Activity {
                 spmanager.setPrefsFylo(Sfylo);
 
                 spmanager.commit();
+                finish();
 /*
                 Log.i("Onoma",spmanager.getPrefsOnoma());
                 Log.i("ilikia",spmanager.getPrefsIlikia()+"");

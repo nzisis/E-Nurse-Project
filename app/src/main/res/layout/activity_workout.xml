@@ -74,6 +74,7 @@
             android:layout_weight="0.4"
             android:hint="10"
             android:layout_gravity="center"
+            android:textColor="#ffffff"
             />
 
     </LinearLayout>
