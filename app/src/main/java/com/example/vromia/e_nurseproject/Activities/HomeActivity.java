@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.vromia.e_nurseproject.R;
 import com.example.vromia.e_nurseproject.Utils.DrawerAdapter;
+import com.example.vromia.e_nurseproject.Utils.SharedPrefsManager;
 
 /**
  * Created by Vromia on 17/12/2014.
@@ -147,7 +148,19 @@ public class HomeActivity extends Activity {
 
                     break;
                 case 3:
-                    //startActivity(new Intent(HomeActivity.this, SettingsActivity2.class));
+                    Intent i = new Intent(Intent.ACTION_SEND);
+                    i.setType("message/rfc822");//  */*
+                    SharedPrefsManager manager = new SharedPrefsManager(HomeActivity.this);
+                    String email=manager.getPrefsEmail();
+                    String bodyEmail="Ο ασθενής "+manager.getPrefsOnoma()+" ηλικίας "+manager.getPrefsIlikia()+" φύλου "+manager.getPrefsFylo()+" ύψους "+manager.getYpsos()+" βάρους "+manager.getPrefsBaros()+" έχει ιστορικό παθήσεων "+manager.getPrefsIstorikoPathiseon();
+                    i.putExtra(Intent.EXTRA_EMAIL  , new String[]{email});
+                    i.putExtra(Intent.EXTRA_SUBJECT, "Δεδομένα του ασθενή "+manager.getPrefsOnoma());
+                    i.putExtra(Intent.EXTRA_TEXT   , bodyEmail);
+                    try {
+                        startActivity(Intent.createChooser(i, "Send mail..."));
+                    } catch (android.content.ActivityNotFoundException ex) {
+                        Toast.makeText(HomeActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+                    }
                     break;
                 case 4:
                     finish();
