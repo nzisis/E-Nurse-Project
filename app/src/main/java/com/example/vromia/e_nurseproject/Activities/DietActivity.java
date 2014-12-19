@@ -159,7 +159,6 @@ public class DietActivity extends FragmentActivity {
                 day = String.valueOf(i3);
             }
             date = i + "-" + month + "-" + day;
-            //etDate.setText(reverseDate());
         }
     };
 

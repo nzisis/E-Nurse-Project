@@ -87,7 +87,7 @@ public class HeathDatabase extends SQLiteOpenHelper{
         cv.put(Key_WCategory,item.getCategory());
         cv.put(Key_PeriodOfDay,item.getPeriodOfDay());
         cv.put(Key_WDate,item.getDate());
-        cv.put(Key_WorkTime,item.getWorkTime());
+        cv.put(Key_WorkTime,item.getWorkTime()+"");
 
         db.insert(Table_Workout,null,cv);
     }
