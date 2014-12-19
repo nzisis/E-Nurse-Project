@@ -123,11 +123,12 @@ public class DietActivity extends FragmentActivity {
         bOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                double quantity=1;
+                double quantity=-1;
                 try {
                   quantity = Double.valueOf(quantField.getText().toString());
                 }catch (NumberFormatException e){
                     Toast.makeText(DietActivity.this,"Plz insert a numeric value",Toast.LENGTH_LONG);
+
                 }
                 String foodName = spinner.getSelectedItem().toString();
 
@@ -148,16 +149,14 @@ public class DietActivity extends FragmentActivity {
         @Override
         public void onDateSet(CalendarDatePickerDialog calendarDatePickerDialog, int i, int i2, int i3) {
             String month, day;
-            if (i2 < 10) {
+            if (i2 < 10)
                 month = "0" + i2;
-            } else {
+            else
                 month = String.valueOf(i2);
-            }
-            if (i3 < 10) {
+            if (i3 < 10)
                 day = "0" + i3;
-            } else {
+            else
                 day = String.valueOf(i3);
-            }
             date = i + "-" + month + "-" + day;
         }
     };
@@ -165,10 +164,17 @@ public class DietActivity extends FragmentActivity {
     private RadialTimePickerDialog.OnTimeSetListener timelistener=new RadialTimePickerDialog.OnTimeSetListener() {
         @Override
         public void onTimeSet(RadialPickerLayout radialPickerLayout, int i, int i2) {
-          //Check this
-           hour= i+"-"+i2;
-           Log.i("msg",hour);
-
+            String hours,mins;
+            if( i<10)
+                hours = "0" + i;
+            else
+                hours = String.valueOf(i);
+            if( i2<10)
+                mins = "0" + i2;
+            else
+                mins = String.valueOf(i2);
+            hour= hours +"-" +mins;
+            Log.i("msg",hour);
         }
     };
 
