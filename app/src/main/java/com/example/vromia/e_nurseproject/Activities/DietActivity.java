@@ -52,7 +52,7 @@ public class DietActivity extends FragmentActivity {
         initListeners();
 
 
-        String categories[]=getResources().getStringArray(R.array.categories);
+        String categories[]=getResources().getStringArray(R.array.foodNames);
         ArrayList<String> finalCategories=new ArrayList<>();
         for(int i=0; i<categories.length; i++){
             finalCategories.add(categories[i]);
@@ -76,14 +76,11 @@ public class DietActivity extends FragmentActivity {
 
         date = c.get(Calendar.YEAR) + "-" + month + "-" + day;
 
-
-
         timeDialog = RadialTimePickerDialog.newInstance(timelistener, c.getTime().getHours(), c.getTime().getMinutes(), true);
 
-
-
-        int temp_hour = Calendar.HOUR_OF_DAY;
-        int temp_min = Calendar.MINUTE;
+        // Initialize variable hour to current hour
+        int temp_hour = c.get(Calendar.HOUR_OF_DAY);
+        int temp_min = c.get(Calendar.MINUTE);
         String temp_hour_fixed,temp_min_fixed;
         if (temp_hour < 10){
             temp_hour_fixed="0"+String.valueOf(temp_hour); }
@@ -175,7 +172,7 @@ public class DietActivity extends FragmentActivity {
         public void onTimeSet(RadialPickerLayout radialPickerLayout, int i, int i2) {
           //Check this
            hour= i+"-"+i2;
-            Log.i("msg",hour);
+           Log.i("msg",hour);
 
         }
     };

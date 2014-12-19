@@ -5,7 +5,14 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
-    <string-array name="categories">
+    <string-array name="foodNames">
+        <item>Κοτόπουλο</item>
+        <item>Χοιρινό</item>
+        <item>Όσπρια</item>
+        <item>Ζυμαρικά</item>
+    </string-array>
+
+    <string-array name="workoutNames">
         <item>Κοτόπουλο</item>
         <item>Χοιρινό</item>
         <item>Όσπρια</item>
