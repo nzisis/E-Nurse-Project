@@ -65,7 +65,7 @@
         android:lines="2"
         android:ellipsize="end"
         android:layout_marginRight="20dp"
-        android:layout_toLeftOf="@id/tvHour"
+       android:layout_below="@+id/tvCategory"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
         android:text="These are some notes"
