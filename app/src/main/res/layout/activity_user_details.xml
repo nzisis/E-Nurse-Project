@@ -247,6 +247,46 @@
             />
 
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="e-mail Ιατρού"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:textStyle="italic"
+            android:textColor="#123582"
+            android:layout_marginTop="30dp"
+            />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="2dp"
+            android:layout_marginBottom="3dp"
+            android:background="@drawable/line_separator"
+            android:id="@+id/view4"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:text=" e-mail :"
+            android:layout_weight="0.7"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="3dp"
+            android:textColor="#000000"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:ems="10"
+            android:textSize="25sp"
+            android:inputType="text"
+            android:hint=" π.χ. iatros@gmail.com"
+            android:id="@+id/email"
+            />
+
         <!-- BUTTONS-->
 
         <LinearLayout

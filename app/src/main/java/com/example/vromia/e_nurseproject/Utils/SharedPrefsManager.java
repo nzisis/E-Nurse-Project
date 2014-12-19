@@ -20,6 +20,7 @@ public class SharedPrefsManager {
     private static final String PREFS_YPSOS = "ypsos";
     private static final String PREFS_BAROS = "baros";
     private static final String PREFS_ISTORIKOPATHISEON = "istorikoPathiseon";
+    private static final String PREFS_EMAIL = "email";
     private static final String PREFS_FYLO = "fylo";
     private static final String PREFS_START_OFF_APP="start of app";
 
@@ -69,12 +70,20 @@ public class SharedPrefsManager {
         return prefs.getString(PREFS_ISTORIKOPATHISEON, "");
     }
 
+    public String getPrefsEmail() {
+        return prefs.getString(PREFS_EMAIL, "");
+    }
+
     public String getPrefsFylo() {
         return prefs.getString(PREFS_FYLO, "");
     }
 
     public void setPrefsOnoma(String onoma) {
         editor.putString(PREFS_ONOMA, onoma);
+    }
+
+    public void setPrefsEmail(String email) {
+        editor.putString(PREFS_EMAIL, email);
     }
 
     public void setPrefsIlikia(int ilikia) {

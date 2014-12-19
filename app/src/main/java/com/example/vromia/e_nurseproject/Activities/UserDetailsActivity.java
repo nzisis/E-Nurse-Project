@@ -19,7 +19,7 @@ import com.example.vromia.e_nurseproject.Utils.SharedPrefsManager;
  */
 public class UserDetailsActivity extends Activity {
 
-    private EditText onoma, ilikia, ypsos, baros, istorikoPathiseon;
+    private EditText onoma, ilikia, ypsos, baros, istorikoPathiseon,email;
     private RadioGroup fylo;
     private Button btBack, btOk;
     private RadioButton rb_male, rb_female;
@@ -39,6 +39,7 @@ public class UserDetailsActivity extends Activity {
         ypsos = (EditText) findViewById(R.id.ypsos);
         baros = (EditText) findViewById(R.id.baros);
         istorikoPathiseon = (EditText) findViewById(R.id.istorikoPathiseon);
+        email=(EditText) findViewById(R.id.email);
         fylo = (RadioGroup) findViewById(R.id.fylo);
         btBack = (Button) findViewById(R.id.btBack);
         btOk = (Button) findViewById(R.id.btOk);
@@ -68,11 +69,12 @@ public class UserDetailsActivity extends Activity {
         btOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String Sonoma, Silikia, Sypsos, Sbaros, SistorikoPathiseon;
+                String Sonoma, Silikia, Sypsos, Sbaros, SistorikoPathiseon,Semail;
                 Sonoma = String.valueOf(onoma.getText());
                 Silikia = String.valueOf(ilikia.getText());
                 Sypsos = String.valueOf(ypsos.getText());
                 Sbaros = String.valueOf(baros.getText());
+                Semail = String.valueOf(email.getText());
                 SistorikoPathiseon = String.valueOf(istorikoPathiseon.getText());
                 SharedPrefsManager spmanager=new SharedPrefsManager(UserDetailsActivity.this);
                 spmanager.startEditing();
@@ -82,6 +84,7 @@ public class UserDetailsActivity extends Activity {
                 spmanager.setPrefsYpsos(Float.parseFloat(Sypsos));
                 spmanager.setPrefsBaros(Float.parseFloat(Sbaros));
                 spmanager.setPrefsIstorikoPathiseon(SistorikoPathiseon);
+                spmanager.setPrefsEmail(Semail);
                 spmanager.setPrefsFylo(Sfylo);
 
                 spmanager.commit();
@@ -92,6 +95,7 @@ public class UserDetailsActivity extends Activity {
                 Log.i("Baros",spmanager.getPrefsBaros()+"");
                 Log.i("Istoriko",spmanager.getPrefsIstorikoPathiseon());
                 Log.i("sex",spmanager.getPrefsFylo());
+                Log.i("Email",spmanager.getPrefsEmail());
 */
             }
         });
