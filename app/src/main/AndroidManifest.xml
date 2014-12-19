@@ -6,7 +6,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/nurse_icon"
+        android:icon="@drawable/enurse"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity

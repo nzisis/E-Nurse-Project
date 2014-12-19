@@ -86,6 +86,12 @@ public class WorkoutActivity extends FragmentActivity {
         spinner = (Spinner) findViewById(R.id.spChooseEx);
         bBack = (Button) findViewById(R.id.btBack);
         bOk = (Button) findViewById(R.id.btOk);
+
+
+
+
+        bDate.setImageResource(R.drawable.calendar);
+
     }
 
 
@@ -137,6 +143,9 @@ public class WorkoutActivity extends FragmentActivity {
                 Log.i("msg",exName+" "+date+" "+quantity+" "+tod);
                 db.InsertWorkout(item);
                 db.close();
+                Toast.makeText(WorkoutActivity.this,"Εισαγωγή επιτυχής",Toast.LENGTH_LONG).show();
+                finish();
+
                 // TODO fix the above (or heathDB), something fails when importing
             }
         });

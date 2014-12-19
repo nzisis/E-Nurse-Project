@@ -15,16 +15,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-
-import android.app.Activity;
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
-
 import com.example.vromia.e_nurseproject.R;
 
 
@@ -65,16 +55,20 @@ public class DrawerAdapter extends ArrayAdapter<String> {
         switch (position){
 
             case 0:
-              //  holder.ivActivity.setImageResource(R.drawable.clothing);
+                  holder.ivActivity.setImageResource(R.drawable.history);
                 break;
             case 1:
-                //holder.ivActivity.setImageResource(R.drawable.food);
+                holder.ivActivity.setImageResource(R.drawable.userdetaiils);
                 break;
             case 2:
-                //holder.ivActivity.setImageResource(R.drawable.drinks);
+                holder.ivActivity.setImageResource(R.drawable.info);
                 break;
             case 3:
-                //holder.ivActivity.setImageResource(R.drawable.personal);
+                holder.ivActivity.setImageResource(R.drawable.export);
+                break;
+
+            case 4:
+                holder.ivActivity.setImageResource(R.drawable.exit);
                 break;
 
 
@@ -104,16 +98,21 @@ public class DrawerAdapter extends ArrayAdapter<String> {
         switch (position){
 
             case 0:
-               // holder.ivActivity.setImageResource(R.drawable.clothing);
+
+                holder.ivActivity.setImageResource(R.drawable.history);
                 break;
             case 1:
-               // holder.ivActivity.setImageResource(R.drawable.food);
+                holder.ivActivity.setImageResource(R.drawable.userdetaiils);
                 break;
             case 2:
-                //holder.ivActivity.setImageResource(R.drawable.drinks);
+                holder.ivActivity.setImageResource(R.drawable.info);
                 break;
             case 3:
-                //holder.ivActivity.setImageResource(R.drawable.personal);
+                holder.ivActivity.setImageResource(R.drawable.export);
+                break;
+
+            case 4:
+                holder.ivActivity.setImageResource(R.drawable.exit);
                 break;
 
 

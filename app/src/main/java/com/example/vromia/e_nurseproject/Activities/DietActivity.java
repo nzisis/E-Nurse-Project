@@ -99,6 +99,11 @@ public class DietActivity extends FragmentActivity {
         bOk = (Button) findViewById(R.id.btOk);
         quantField = (EditText) findViewById(R.id.etQuant);
         spinner = (Spinner) findViewById(R.id.spChooseFood);
+
+        bHour.setImageResource(R.drawable.clock);
+        bDate.setImageResource(R.drawable.calendar);
+
+
     }
 
     public void initListeners(){
@@ -123,7 +128,7 @@ public class DietActivity extends FragmentActivity {
         bOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                double quantity=-1;
+                double quantity=1;
                 try {
                   quantity = Double.valueOf(quantField.getText().toString());
                 }catch (NumberFormatException e){
@@ -138,7 +143,8 @@ public class DietActivity extends FragmentActivity {
                 DietItem item=new DietItem(foodName,date,quantity,hour);
                 db.InsertDiet(item);
                 db.close();
-
+                Toast.makeText(DietActivity.this,"Εισαγωγή επιτυχής",Toast.LENGTH_LONG).show();
+                finish();
 
             }
         });
