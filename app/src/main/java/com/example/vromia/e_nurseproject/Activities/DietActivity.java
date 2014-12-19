@@ -82,6 +82,7 @@ public class DietActivity extends FragmentActivity {
         int temp_hour = c.get(Calendar.HOUR_OF_DAY);
         int temp_min = c.get(Calendar.MINUTE);
         String temp_hour_fixed,temp_min_fixed;
+        // TODO This block actually does nothing atm...?
         if (temp_hour < 10){
             temp_hour_fixed="0"+String.valueOf(temp_hour); }
         else {
