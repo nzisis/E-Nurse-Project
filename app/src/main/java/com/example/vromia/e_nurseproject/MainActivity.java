@@ -32,9 +32,7 @@ public class MainActivity extends Activity {
 
         }else{
 
-            sharedPrefsManager.startEditing();
-            sharedPrefsManager.setPrefsStart(true);
-            sharedPrefsManager.commit();
+
 
             startActivity(new Intent(MainActivity.this, UserDetailsActivity.class));
             this.finish();

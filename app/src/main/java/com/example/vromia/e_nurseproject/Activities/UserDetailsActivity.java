@@ -2,6 +2,7 @@ package com.example.vromia.e_nurseproject.Activities;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -102,7 +103,23 @@ public class UserDetailsActivity extends Activity {
                 spmanager.setPrefsFylo(Sfylo);
 
                 spmanager.commit();
-                finish();
+
+
+                if(!spmanager.getPrefsStart()){
+                    spmanager.startEditing();
+                    spmanager.setPrefsStart(true);
+                    spmanager.commit();
+                    startActivity(new Intent(UserDetailsActivity.this,HomeActivity.class));
+
+                }else{
+
+                    finish();
+                }
+
+
+
+
+
 /*
                 Log.i("Onoma",spmanager.getPrefsOnoma());
                 Log.i("ilikia",spmanager.getPrefsIlikia()+"");
