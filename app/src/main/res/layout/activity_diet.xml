@@ -1,178 +1,207 @@
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#000000"
-    >
+    android:layout_height="match_parent">
 
 
-
-<RelativeLayout
-  android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
-
-    >
-
-    <!--<ScrollView-->
-        <!--android:id="@+id/myScrollView"-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="wrap_content" >-->
-
-    <TextView
-        android:id="@+id/tvCat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Κατηγορίες"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:textStyle="bold"
-        android:textColor="#ffffff"
-        />
-
-    <Spinner
-        android:id="@+id/spChooseFood"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_below="@+id/tvCat"
-         />
-
-    <LinearLayout
-        android:id="@+id/llquant"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="1"
-        android:layout_below="@+id/spChooseFood"
-        android:layout_marginTop="20dp"
-        >
+        android:layout_height="match_parent"
+        android:background="#000000">
 
 
-        <TextView
-            android:id="@+id/tvQuantity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Ποσότητα (Μερίδα)"
-             android:lines="2"
-            android:layout_weight="0.6"
-            android:textStyle="italic"
-            android:textColor="#ffffff"
-       />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:id="@+id/llCategory"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+
+                <me.grantland.widget.AutofitTextView
+                    android:id="id/tvCat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.6"
+                    android:padding="10dp"
+                    android:text="Κατηγορία:"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+
+                <Spinner
+                    android:id="@+id/spChooseFood"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.4"
+
+                    />
+
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/line_separator" />
+
+
+            <LinearLayout
+                android:id="@+id/llQuant"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+
+                <me.grantland.widget.AutofitTextView
+                    android:id="@+id/tvQuantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.6"
+                    android:lines="2"
+                    android:padding="10dp"
+                    android:text="Ποσότητα: (Μερίδα)"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp"
+                    android:textStyle="italic" />
+
+
+                <EditText
+                    android:id="@+id/etQuant"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.4"
+                    android:editable="false"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:hint="1"
+                    android:inputType="number"
+                    android:textColor="#ffffff" />
+
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/line_separator" />
+
+            <LinearLayout
+                android:id="@+id/llhour"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+
+                <me.grantland.widget.AutofitTextView
+                    android:id="@+id/tvHour"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.3"
+                    android:padding="10dp"
+                    android:text="Ώρα γεύματος:"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp"
+                    android:textStyle="italic" />
+
+                <ImageButton
+                    android:id="@+id/imbtHour"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="0.7" />
+
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/line_separator" />
+
+
+            <LinearLayout
+                android:id="@+id/lldate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <me.grantland.widget.AutofitTextView
+                    android:id="@+id/tvDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.3"
+                    android:padding="10dp"
+                    android:text="Ημερομηνία:"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp"
+                    android:textStyle="italic" />
+
+                <ImageButton
+                    android:id="@+id/imbtDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="0.7" />
+            </LinearLayout>
 
 
 
-        <EditText
-            android:id="@+id/etQuant"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="phone"
-            android:ems="10"
-            android:editable="false"
-            android:layout_weight="0.4"
-            android:hint="1"
-            android:layout_gravity="center"
-            android:textColor="#ffffff"
-           />
 
         </LinearLayout>
 
+
+    </ScrollView>
+
     <LinearLayout
-        android:id="@+id/llhour"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="1"
-        android:layout_below="@+id/llquant"
-        android:layout_marginTop="20dp"
-        >
-
-        <TextView
-            android:id="@+id/tvHour"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Ώρα γεύματος"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="0.2"
-            android:textColor="#ffffff"
-            />
-
-        <ImageButton
-            android:id="@+id/imbtHour"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_weight="0.8"
-            android:layout_marginRight="10dp"
-             />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/lldate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="1"
-        android:layout_below="@+id/llhour"
-        android:layout_marginTop="20dp"
-        >
-
-        <TextView
-            android:id="@+id/tvDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Ημερομηνία"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="0.2"
-            android:textColor="#ffffff"
-            />
-
-        <ImageButton
-            android:id="@+id/imbtDate"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_weight=".8"
-            android:layout_marginRight="10dp"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lldate"
-        android:layout_marginTop="35dp"
-        >
+        android:layout_alignParentBottom="true">
 
         <Button
             android:id="@+id/btBack"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Back"
-            android:textColor="#fefff7"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
             android:background="#e51616"
-            android:layout_marginRight="30dp"
-            android:layout_weight="0.7"/>
+            android:text="Back"
+            />
 
         <Button
             android:id="@+id/btOk"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
             android:text="Ok"
-            android:textColor="#fefff7"
-            android:layout_marginLeft="30dp"
-            android:background="#adda55"
-            android:layout_weight="0.7"/>
+            android:background="@color/YellowGreen"
+            />
 
-        </LinearLayout>
-    <!--</ScrollView>-->
+    </LinearLayout>
+
+
 </RelativeLayout>
-</ScrollView>
