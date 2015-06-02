@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000">
+    android:background="@drawable/app_background">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -10,7 +10,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="60dp"
+            >
 
             <TextView
                 android:layout_width="match_parent"
@@ -18,7 +20,7 @@
                 android:layout_marginTop="12dp"
                 android:gravity="center"
                 android:text="Προσωπικά στοιχεία"
-                android:textColor="#ff0000"
+                android:textColor="#003399"
                 android:textSize="30sp"
                 android:textStyle="italic" />
 
@@ -41,7 +43,7 @@
                     android:layout_weight="0.5"
                     android:padding="10dp"
                     android:text=" Όνομα :"
-                    android:textColor="#ffffff"
+                    android:textColor="#de000000"
                     android:textSize="20sp" />
 
                 <EditText
@@ -52,7 +54,7 @@
                     android:ems="10"
                     android:hint="Νίκος"
                     android:inputType="textPersonName"
-                    android:textColor="#ffffff"
+                    android:textColor="#de000000"
                     android:textSize="20sp" />
 
             </LinearLayout>
@@ -69,7 +71,7 @@
                     android:layout_weight="0.5"
                     android:padding="10dp"
                     android:text=" Ηλικία :"
-                    android:textColor="#ffffff"
+                    android:textColor="#de000000"
                     android:textSize="20sp" />
 
                 <EditText
@@ -80,7 +82,7 @@
                     android:ems="10"
                     android:hint="84"
                     android:inputType="number"
-                    android:textColor="#ffffff"
+                    android:textColor="#de000000"
                     android:textSize="20sp" />
 
 
@@ -98,7 +100,7 @@
                     android:layout_weight="0.5"
                     android:padding="10dp"
                     android:text=" Φύλο :"
-                    android:textColor="#ffffff"
+                    android:textColor="#de000000"
                     android:textSize="20sp" />
 
 
@@ -115,7 +117,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="'Ανδρας"
-                        android:textColor="#ffffff"
+                        android:textColor="#de000000"
                         android:textSize="20sp" />
 
                     <RadioButton
@@ -123,7 +125,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Γυναίκα"
-                        android:textColor="#ffffff"
+                        android:textColor="#de000000"
                         android:textSize="20sp" />
 
                 </RadioGroup>
@@ -137,7 +139,7 @@
                 android:layout_marginTop="30dp"
                 android:gravity="center"
                 android:text="Σωματικά στοιχεία"
-                android:textColor="#ff0000"
+                android:textColor="#003399"
                 android:textSize="30sp"
                 android:textStyle="italic" />
 
@@ -161,7 +163,7 @@
                     android:layout_weight="0.5"
                     android:padding="10dp"
                     android:text=" Ύψος (cm) :"
-                    android:textColor="#ffffff"
+                    android:textColor="#de000000"
                     android:textSize="20sp" />
 
                 <EditText
@@ -172,7 +174,7 @@
                     android:ems="10"
                     android:hint="180 "
                     android:inputType="number"
-                    android:textColor="#ffffff"
+                    android:textColor="#de000000"
                     android:textSize="20sp" />
 
             </LinearLayout>
@@ -190,7 +192,7 @@
                     android:layout_weight="0.5"
                     android:padding="10dp"
                     android:text=" Βάρος (kg) :"
-                    android:textColor="#ffffff"
+                    android:textColor="#de000000"
                     android:textSize="20sp" />
 
                 <EditText
@@ -201,7 +203,7 @@
                     android:ems="10"
                     android:hint="85 "
                     android:inputType="number"
-                    android:textColor="#ffffff"
+                    android:textColor="#de000000"
                     android:textSize="20sp" />
 
             </LinearLayout>
@@ -219,7 +221,7 @@
                     android:layout_weight="0.2"
                     android:gravity="center"
                     android:text="Ιστορικό παθήσεων"
-                    android:textColor="#ff0000"
+                    android:textColor="#003399"
                     android:textSize="30sp"
                     android:textStyle="italic" />
 
@@ -255,7 +257,7 @@
                     android:ems="10"
                     android:hint=" π.χ. διαβήτης"
                     android:inputType="text"
-                    android:textColor="#ffffff"
+                    android:textColor="#de000000"
                     android:textSize="20sp" />
 
             </LinearLayout>
@@ -267,7 +269,7 @@
                 android:layout_marginTop="30dp"
                 android:gravity="center"
                 android:text="Στοιχεία Γιατρού"
-                android:textColor="#ff0000"
+                android:textColor="#003399"
                 android:textSize="30sp"
                 android:textStyle="italic" />
 
@@ -291,7 +293,7 @@
                     android:layout_weight="0.6"
                     android:padding="10dp"
                     android:text=" Όνομα :"
-                    android:textColor="#ffffff"
+                    android:textColor="#de000000"
                     android:textSize="20sp" />
 
 

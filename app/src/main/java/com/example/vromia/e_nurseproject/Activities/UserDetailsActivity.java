@@ -40,7 +40,7 @@ public class UserDetailsActivity extends Activity {
         ypsos = (EditText) findViewById(R.id.ypsos);
         baros = (EditText) findViewById(R.id.baros);
         istorikoPathiseon = (EditText) findViewById(R.id.istorikoPathiseon);
-        email=(EditText) findViewById(R.id.email);
+       // email=(EditText) findViewById(R.id.email);
         fylo = (RadioGroup) findViewById(R.id.fylo);
         btBack = (Button) findViewById(R.id.btBack);
         btOk = (Button) findViewById(R.id.btOk);
@@ -78,7 +78,7 @@ public class UserDetailsActivity extends Activity {
                 Silikia = String.valueOf(ilikia.getText());
                 Sypsos = String.valueOf(ypsos.getText());
                 Sbaros = String.valueOf(baros.getText());
-                Semail = String.valueOf(email.getText());
+               // Semail = String.valueOf(email.getText());
 
                 if(Silikia.equals("")){
                     Silikia="0";
@@ -99,7 +99,7 @@ public class UserDetailsActivity extends Activity {
                 spmanager.setPrefsYpsos(Float.parseFloat(Sypsos));
                 spmanager.setPrefsBaros(Float.parseFloat(Sbaros));
                 spmanager.setPrefsIstorikoPathiseon(SistorikoPathiseon);
-                spmanager.setPrefsEmail(Semail);
+             //   spmanager.setPrefsEmail(Semail);
                 spmanager.setPrefsFylo(Sfylo);
 
                 spmanager.commit();

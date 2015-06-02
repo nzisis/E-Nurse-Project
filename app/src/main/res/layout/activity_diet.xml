@@ -1,12 +1,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/app_background"
+    >
 
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#000000">
+        >
 
 
         <LinearLayout
@@ -25,13 +27,13 @@
 
 
                 <me.grantland.widget.AutofitTextView
-                    android:id="id/tvCat"
+                    android:id="@+id/tvCat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.6"
                     android:padding="10dp"
                     android:text="Κατηγορία:"
-                    android:textColor="#ffffff"
+                    android:textColor="#de000000"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -72,7 +74,7 @@
                     android:lines="2"
                     android:padding="10dp"
                     android:text="Ποσότητα: (Μερίδα)"
-                    android:textColor="#ffffff"
+                    android:textColor="#de000000"
                     android:textSize="20sp"
                     android:textStyle="italic" />
 
@@ -88,7 +90,7 @@
                     android:focusable="false"
                     android:hint="1"
                     android:inputType="number"
-                    android:textColor="#ffffff" />
+                    android:textColor="#de000000" />
 
 
             </LinearLayout>
@@ -117,7 +119,7 @@
                     android:layout_weight="0.3"
                     android:padding="10dp"
                     android:text="Ώρα γεύματος:"
-                    android:textColor="#ffffff"
+                    android:textColor="#de000000"
                     android:textSize="20sp"
                     android:textStyle="italic" />
 
@@ -155,7 +157,7 @@
                     android:layout_weight="0.3"
                     android:padding="10dp"
                     android:text="Ημερομηνία:"
-                    android:textColor="#ffffff"
+                    android:textColor="#de000000"
                     android:textSize="20sp"
                     android:textStyle="italic" />
 
