@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Γενικα">
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="key_animations"
+            android:title="Εδικα εφε" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Δεδομενα">
+
+        <Preference
+            android:key="key_delete_exc"
+            android:title="Διαγραφη δεδομενων Ασκησης" />
+
+        <Preference
+            android:key="key_delete_food"
+            android:title="Διαγραφη δεδομενων Διατροφης" />
+
+        <Preference
+            android:key="key_export"
+            android:title="Εξαγωγη δεδομενων σε αρχειο" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Σχετικα">
+
+        <Preference
+            android:key="key_about"
+            android:title="Σχετικα με την εφαρμογη" />
+
+        <Preference
+            android:key="key_rate"
+            android:title="Αξιολογηση" />
+
+    </PreferenceCategory>
+
+
+</PreferenceScreen>
