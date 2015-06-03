@@ -76,7 +76,7 @@ public class SettingsActivity extends PreferenceActivity {
             }
         });
 
-        screen = findPreference("key_delete_export");
+        screen = findPreference("key_export");
         screen.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
