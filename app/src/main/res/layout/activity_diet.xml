@@ -1,14 +1,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/app_background"
-    >
+    android:background="@drawable/app_background">
 
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
 
         <LinearLayout
@@ -170,8 +168,6 @@
             </LinearLayout>
 
 
-
-
         </LinearLayout>
 
 
@@ -180,8 +176,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/btBack"
@@ -190,8 +186,7 @@
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="#e51616"
-            android:text="Back"
-            />
+            android:text="Back" />
 
         <Button
             android:id="@+id/btOk"
@@ -199,9 +194,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:text="Ok"
             android:background="@color/YellowGreen"
-            />
+            android:text="Ok" />
 
     </LinearLayout>
 
