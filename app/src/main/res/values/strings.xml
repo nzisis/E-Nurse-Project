@@ -28,6 +28,7 @@
 
     <string name="close_drawer">Closed</string>
     <string name="open_drawer">Opened</string>
+    <string name="title_activity_login">LoginActivity</string>
 
 
 </resources>
