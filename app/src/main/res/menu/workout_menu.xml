@@ -1,9 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/toggleButton"
+        android:id="@+id/toggle"
+        android:orderInCategory="1"
         android:showAsAction="always"
         android:title="Διατροφή" />
+
+    <item
+        android:id="@+id/filters"
+        android:orderInCategory="10"
+        android:showAsAction="always"
+        android:title="Φίλτρα">
+
+        <menu>
+
+            <item
+                android:id="@+id/filtersWorkoutRecent"
+                android:title="Πιο πρόσφατο" />
+            <item
+                android:id="@+id/filtersWorkoutDate"
+                android:title="Ανά Ημερομηνία" />
+            <item
+                android:id="@+id/filtersWorkoutPeriod"
+                android:title="Ανά περίοδο ημέρας" />
+
+            <item
+                android:id="@+id/filtersWorkoutCategory"
+                android:title="Ανά είδος άσκησης" />
+
+
+        </menu>
+
+    </item>
 
 </menu>

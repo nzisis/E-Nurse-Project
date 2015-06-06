@@ -2,8 +2,30 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-    android:id="@+id/toggleButton"
-    android:showAsAction="always"
-    android:title="Άσκηση" />
+        android:id="@+id/toggle"
+        android:showAsAction="always"
+        android:title="Άσκηση" />
+
+    <item
+        android:id="@+id/filters"
+        android:orderInCategory="10"
+        android:showAsAction="always"
+        android:title="Φίλτρα">
+
+        <menu>
+
+            <item
+                android:id="@+id/filtersDietRecent"
+                android:title="Πιο πρόσφατο" />
+            <item
+                android:id="@+id/filtersDietDate"
+                android:title="Ανά Ημερομηνία" />
+            <item
+                android:id="@+id/filtersDietCategory"
+                android:title="Ανά κατηγορία" />
+
+        </menu>
+
+    </item>
 
 </menu>
