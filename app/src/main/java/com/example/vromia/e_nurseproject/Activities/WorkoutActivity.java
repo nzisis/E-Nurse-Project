@@ -1,6 +1,5 @@
 package com.example.vromia.e_nurseproject.Activities;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -38,7 +37,7 @@ public class WorkoutActivity extends FragmentActivity {
     private Spinner spinner;
     private ImageButton dateBut;
     private CalendarDatePickerDialog cdate;//gui for showing date
-    private String date,tod;
+    private String date, tod;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,37 +48,37 @@ public class WorkoutActivity extends FragmentActivity {
         initListeners();
         bMorn.setActivated(true);
 
-        String categories[]=getResources().getStringArray(R.array.workoutNames);
-        ArrayList<String> finalCategories=new ArrayList<>();
-        for(int i=0; i<categories.length; i++){
+        String categories[] = getResources().getStringArray(R.array.workoutNames);
+        ArrayList<String> finalCategories = new ArrayList<>();
+        for (int i = 0; i < categories.length; i++) {
             finalCategories.add(categories[i]);
         }
-        ArrayAdapter adapter=new ArrayAdapter(WorkoutActivity.this,R.layout.spinner_item,R.id.tvSpinnerCategories,finalCategories);
+        ArrayAdapter adapter = new ArrayAdapter(WorkoutActivity.this, R.layout.spinner_item, R.id.tvSpinnerCategories, finalCategories);
         spinner.setAdapter(adapter);
 
         Calendar c = Calendar.getInstance();
-        cdate= CalendarDatePickerDialog.newInstance(listener,
+        cdate = CalendarDatePickerDialog.newInstance(listener,
                 c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
 
         //Initialize variable date to current date
         String day = c.get(Calendar.DAY_OF_MONTH) + "";
-        String month = (c.get(Calendar.MONTH)+1) + "";
+        String month = (c.get(Calendar.MONTH) + 1) + "";
         if (c.get(Calendar.DAY_OF_MONTH) < 10) {
             day = "0" + c.get(Calendar.DAY_OF_MONTH);
         }
-        if (c.get(Calendar.MONTH)+1 < 10) {
-            month = "0" + (c.get(Calendar.MONTH)+1);
+        if (c.get(Calendar.MONTH) + 1 < 10) {
+            month = "0" + (c.get(Calendar.MONTH) + 1);
         }
 
         date = c.get(Calendar.YEAR) + "-" + month + "-" + day;
-        tod="Πρωί";
+        tod = "Πρωί";
         bMorn.setChecked(true);
     }
 
-    public void initUI( ){
-        bMorn  = (RadioButton) findViewById(R.id.rbMorn); // Na kanoume activate kapoio apo default gia na apofygoume errors an den epileksei o xrhsths kati?
-        bNoon  = (RadioButton) findViewById(R.id.rbNoon);
-        bNight  = (RadioButton) findViewById(R.id.rbNight);
+    public void initUI() {
+        bMorn = (RadioButton) findViewById(R.id.rbMorn); // Na kanoume activate kapoio apo default gia na apofygoume errors an den epileksei o xrhsths kati?
+        bNoon = (RadioButton) findViewById(R.id.rbNoon);
+        bNight = (RadioButton) findViewById(R.id.rbNight);
         rGroup = (RadioGroup) findViewById(R.id.rdtod);
         bDate = (ImageButton) findViewById(R.id.imbtDate);
         quantField = (EditText) findViewById(R.id.etDuration);
@@ -88,29 +87,30 @@ public class WorkoutActivity extends FragmentActivity {
         bOk = (Button) findViewById(R.id.btOk);
 
 
-
-
         bDate.setImageResource(R.drawable.calendar);
 
     }
 
 
-    public void initListeners(){
+    public void initListeners() {
         bMorn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { tod="Πρωί";
+            public void onClick(View v) {
+                tod = "Πρωί";
             }
         });
 
         bNoon.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { tod="Μεσημέρι";
+            public void onClick(View v) {
+                tod = "Μεσημέρι";
             }
         });
 
         bNight.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { tod="Βράδυ";
+            public void onClick(View v) {
+                tod = "Βράδυ";
             }
         });
 
@@ -135,18 +135,17 @@ public class WorkoutActivity extends FragmentActivity {
                 String exName = spinner.getSelectedItem().toString();
                 try {
                     quantity = Double.valueOf(quantField.getText().toString());
-                }catch (NumberFormatException e){
+                } catch (NumberFormatException e) {
                     Toast.makeText(WorkoutActivity.this, "Plz insert a numeric value", Toast.LENGTH_LONG);
                 }
-                HeathDatabase db=new HeathDatabase(WorkoutActivity.this);//instance of current database
-                WorkoutItem item=new WorkoutItem(exName,date,quantity,tod);
-                Log.i("msg",exName+" "+date+" "+quantity+" "+tod);
+                HeathDatabase db = new HeathDatabase(WorkoutActivity.this);//instance of current database
+                WorkoutItem item = new WorkoutItem(exName, date, quantity, tod);
+                Log.i("msg", exName + " " + date + " " + quantity + " " + tod);
                 db.InsertWorkout(item);
                 db.close();
-                Toast.makeText(WorkoutActivity.this,"Εισαγωγή επιτυχής",Toast.LENGTH_LONG).show();
+                Toast.makeText(WorkoutActivity.this, "Εισαγωγή επιτυχής", Toast.LENGTH_LONG).show();
                 finish();
 
-                // TODO fix the above (or heathDB), something fails when importing
             }
         });
     }
@@ -155,6 +154,7 @@ public class WorkoutActivity extends FragmentActivity {
         @Override
         public void onDateSet(CalendarDatePickerDialog calendarDatePickerDialog, int i, int i2, int i3) {
             String month, day;
+            i2++;
             if (i2 < 10) {
                 month = "0" + i2;
             } else {

@@ -30,12 +30,12 @@ public class HomeActivity extends Activity {
         gridView = (GridView) findViewById(R.id.gridview);
         items = new ArrayList<>();
 
-        items.add(new GridItem(BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_food), "Nutrition"));
-        items.add(new GridItem(BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_excercise), "Excercise"));
-        items.add(new GridItem(BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_profile), "Profile"));
-        items.add(new GridItem(BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_history), "History"));
-        items.add(new GridItem(BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_settings), "Settings"));
-        items.add(new GridItem(BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_exit), "Exit"));
+        items.add(new GridItem(BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_food), "Διατροφή"));
+        items.add(new GridItem(BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_excercise), "Άσκηση"));
+        items.add(new GridItem(BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_profile), "Προφίλ"));
+        items.add(new GridItem(BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_history), "Ιστορικό"));
+        items.add(new GridItem(BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_settings), "Ρυθμίσεις"));
+        items.add(new GridItem(BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_exit), "Έξοδος"));
 
 
         GridAdapter adapter = new GridAdapter(HomeActivity.this, R.layout.grid_item_menu, items);

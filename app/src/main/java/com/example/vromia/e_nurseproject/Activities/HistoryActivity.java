@@ -93,7 +93,7 @@ public class HistoryActivity extends FragmentActivity {
             case R.id.filtersDietCategory:
                 categories = getResources().getStringArray(R.array.foodNames);
 
-                builder.setTitle("Categories");
+                builder.setTitle("Κατηγορίες");
 
                 builder.setItems(categories, new DialogInterface.OnClickListener() {
                     @Override
@@ -121,7 +121,7 @@ public class HistoryActivity extends FragmentActivity {
             case R.id.filtersWorkoutCategory:
                 categories = getResources().getStringArray(R.array.workoutNames);
 
-                builder.setTitle("Categories");
+                builder.setTitle("Κατηγορίες");
 
                 builder.setItems(categories, new DialogInterface.OnClickListener() {
                     @Override
@@ -143,6 +143,22 @@ public class HistoryActivity extends FragmentActivity {
                 dateDialog.show(manager, "Tag");
                 break;
             case R.id.filtersWorkoutPeriod:
+                final String periods[] = new String[]{"Πρωί","Μεσημέρι","Βράδυ"};
+
+                builder.setTitle("Περίοδοι");
+
+                builder.setItems(periods, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int item) {
+
+                        String chosenPeriod = periods[item];
+                        cursor = db.getWorkoutByPeriod(chosenPeriod);
+                        refreshList(cursor);
+                        dialog.dismiss();
+                    }
+                });
+                dialog = builder.create();
+                dialog.show();
                 break;
             case R.id.filtersWorkoutRecent:
                 cursor = db.getWorkoutByRecent();

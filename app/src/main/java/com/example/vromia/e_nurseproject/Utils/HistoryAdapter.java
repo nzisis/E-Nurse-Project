@@ -38,11 +38,11 @@ public class HistoryAdapter extends CursorAdapter {
         TextView tvUnit = (TextView) view.findViewById(R.id.tvUnit);
 
         tvCategory.setText(cursor.getString(1));
-        String sep = " at ";
+        String sep = " στις ";
         if (isDiet) {
-            tvUnit.setText("(pieces)");
+            tvUnit.setText("(μερίδες)");
         } else {
-            tvUnit.setText("(minutes)");
+            tvUnit.setText("(λεπτά)");
             sep = ",";
         }
         tvDateTime.setText(cursor.getString(2) + sep + cursor.getString(4));
@@ -60,11 +60,11 @@ public class HistoryAdapter extends CursorAdapter {
         TextView tvUnit = (TextView) view.findViewById(R.id.tvUnit);
 
         tvCategory.setText(cursor.getString(1));
-        String sep = " at ";
+        String sep = " στις ";
         if (isDiet) {
-            tvUnit.setText("(pieces)");
+            tvUnit.setText("(μερίδες)");
         } else {
-            tvUnit.setText("(minutes)");
+            tvUnit.setText("(λεπτά)");
             sep = ",";
         }
         tvDateTime.setText(cursor.getString(2) + sep + cursor.getString(4));
