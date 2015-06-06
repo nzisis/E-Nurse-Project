@@ -37,8 +37,8 @@ public class HistoryActivity extends Activity {
         db=new HeathDatabase(HistoryActivity.this);
         cursor=db.getAllDietItems();
 
-        startManagingCursor(cursor);
-        adapter = new HistoryAdapter(getApplicationContext() , cursor);
+//        startManagingCursor(cursor);
+        adapter = new HistoryAdapter(getApplicationContext() , cursor , true);
         lv.setAdapter(adapter);
 
     }
@@ -73,7 +73,7 @@ public class HistoryActivity extends Activity {
                 menu.clear();
                 getMenuInflater().inflate(R.menu.workout_menu, menu);
                 cursor = db.getAllWorkoutItems();
-                adapter = new HistoryAdapter(getApplicationContext(), cursor);
+                adapter = new HistoryAdapter(getApplicationContext(), cursor , false);
                 lv.setAdapter(adapter);
 
             } else {
@@ -81,7 +81,7 @@ public class HistoryActivity extends Activity {
                 menu.clear();
                 getMenuInflater().inflate(R.menu.diet_menu, menu);
                 cursor = db.getAllDietItems();
-                adapter = new HistoryAdapter(getApplicationContext(), cursor);
+                adapter = new HistoryAdapter(getApplicationContext(), cursor , true);
                 lv.setAdapter(adapter);
 
             }

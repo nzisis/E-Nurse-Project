@@ -17,28 +17,36 @@ public class HistoryAdapter extends CursorAdapter {
 
 
     private LayoutInflater inflater;
+    private boolean isDiet;
 
-    public HistoryAdapter(Context context, Cursor c){
-        super(context,c);
+
+    public HistoryAdapter(Context context, Cursor c, boolean isDiet) {
+        super(context, c);
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.isDiet = isDiet;
     }
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
 
-        View view=null;
-        view=inflater.inflate(R.layout.history_list_item,parent,false);
+        View view = null;
+        view = inflater.inflate(R.layout.history_list_item, parent, false);
 
-        TextView tvCategory=(TextView) view.findViewById(R.id.tvCategory);
-        TextView tvDate=(TextView) view.findViewById(R.id.tvDate);
-        TextView tvHour=(TextView) view.findViewById(R.id.tvHour);
-        TextView tvAmount=(TextView) view.findViewById(R.id.tvAmount);
+        TextView tvCategory = (TextView) view.findViewById(R.id.tvCategory);
+        TextView tvDateTime = (TextView) view.findViewById(R.id.tvDateTime);
+        TextView tvAmount = (TextView) view.findViewById(R.id.tvAmount);
+        TextView tvUnit = (TextView) view.findViewById(R.id.tvUnit);
 
         tvCategory.setText(cursor.getString(1));
-        tvDate.setText(cursor.getString(2));
-        tvHour.setText(cursor.getString(4));
+        String sep = " at ";
+        if (isDiet) {
+            tvUnit.setText("(pieces)");
+        } else {
+            tvUnit.setText("(minutes)");
+            sep = ",";
+        }
+        tvDateTime.setText(cursor.getString(2) + sep + cursor.getString(4));
         tvAmount.setText(cursor.getString(3));
-
 
 
         return view;
@@ -46,14 +54,20 @@ public class HistoryAdapter extends CursorAdapter {
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-        TextView tvCategory=(TextView) view.findViewById(R.id.tvCategory);
-        TextView tvDate=(TextView) view.findViewById(R.id.tvDate);
-        TextView tvHour=(TextView) view.findViewById(R.id.tvHour);
-        TextView tvAmount=(TextView) view.findViewById(R.id.tvAmount);
+        TextView tvCategory = (TextView) view.findViewById(R.id.tvCategory);
+        TextView tvDateTime = (TextView) view.findViewById(R.id.tvDateTime);
+        TextView tvAmount = (TextView) view.findViewById(R.id.tvAmount);
+        TextView tvUnit = (TextView) view.findViewById(R.id.tvUnit);
 
         tvCategory.setText(cursor.getString(1));
-        tvDate.setText(cursor.getString(2));
-        tvHour.setText(cursor.getString(4));
+        String sep = " at ";
+        if (isDiet) {
+            tvUnit.setText("(pieces)");
+        } else {
+            tvUnit.setText("(minutes)");
+            sep = ",";
+        }
+        tvDateTime.setText(cursor.getString(2) + sep + cursor.getString(4));
         tvAmount.setText(cursor.getString(3));
 
     }

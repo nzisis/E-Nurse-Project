@@ -45,7 +45,17 @@ public class HomeActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0) {
+                    startActivity(new Intent(HomeActivity.this, DietActivity.class));
+                } else if (position == 1) {
+                    startActivity(new Intent(HomeActivity.this, WorkoutActivity.class));
+                } else if (position == 2) {
+                    startActivity(new Intent(HomeActivity.this, UserDetailsActivity.class));
+                } else if (position == 3) {
+                    startActivity(new Intent(HomeActivity.this, HistoryActivity.class));
+                } else if (position == 4) {
                     startActivity(new Intent(HomeActivity.this, SettingsActivity.class));
+                } else if (position == 5) {
+                    finish();
                 }
             }
         });

@@ -10,28 +10,28 @@ public class WorkoutItem {
     private String periodOfDay;
     private double workTime;
 
-    public WorkoutItem(String category,String date,double workTime,String periodOfDay){
+    public WorkoutItem(String category, String date, double workTime, String periodOfDay) {
 
-        this.category=category;
-        this.date=date;
-        this.workTime=workTime;
-        this.periodOfDay=periodOfDay;
+        this.category = category;
+        this.date = date;
+        this.workTime = workTime;
+        this.periodOfDay = periodOfDay;
 
     }
 
-    public String getCategory(){
+    public String getCategory() {
         return category;
     }
 
-    public String getDate(){
+    public String getDate() {
         return date;
     }
 
-    public String getPeriodOfDay(){
+    public String getPeriodOfDay() {
         return periodOfDay;
     }
 
-    public double getWorkTime(){
+    public double getWorkTime() {
         return workTime;
     }
 

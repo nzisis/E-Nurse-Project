@@ -32,8 +32,8 @@ public class HeathDatabase extends SQLiteOpenHelper{
     private static final String Key_WId = "_id";
     private static final String Key_WDate = "date";
     private static final String Key_WCategory = "category";
-    private static final String Key_WorkTime="work time";
-    private static final String Key_PeriodOfDay="period of day";
+    private static final String Key_WorkTime="workTime";
+    private static final String Key_PeriodOfDay="period";
 
     //Table Doctors columns
     private static final String Key_Did = "id";
@@ -105,6 +105,7 @@ public class HeathDatabase extends SQLiteOpenHelper{
         cv.put(Key_WorkTime,item.getWorkTime()+"");
 
         db.insert(Table_Workout,null,cv);
+        Log.i("nikos" , "workout inserted");
     }
 
     public void InsertDoctor(DoctorItem item){
