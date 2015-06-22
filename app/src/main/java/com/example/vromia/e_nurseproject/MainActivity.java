@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.vromia.e_nurseproject.Activities.HomeActivity;
+import com.example.vromia.e_nurseproject.Activities.LoginActivity;
 import com.example.vromia.e_nurseproject.Activities.UserDetailsActivity;
 import com.example.vromia.e_nurseproject.Utils.SharedPrefsManager;
 
@@ -31,9 +32,7 @@ public class MainActivity extends Activity {
 
         }else{
 
-
-
-            startActivity(new Intent(MainActivity.this, UserDetailsActivity.class));
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
             this.finish();
         }
 

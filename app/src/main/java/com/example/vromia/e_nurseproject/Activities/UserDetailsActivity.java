@@ -46,16 +46,21 @@ public class UserDetailsActivity extends Activity {
     private Spinner sDoctors;
 
     private int userID = -1;
+    private int cuSuccess= -1;
+    private int sex=-1;
     private String userName,userSurname,history;
     private int age,male,weight;
 
     private static String user_details_url = "http://nikozisi.webpages.auth.gr/enurse/get_user_details.php";
+    private static String create_user_url = "http://nikozisi.webpages.auth.gr/enurse/create_user.php";
 
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_AGE = "age";
     private static final String TAG_HISTORY = "history";
     private static final String TAG_MALE = "male";
     private static final String TAG_WEIGHT = "weight";
+    private static final String TAG_CUSUCCESS="success";
+    private static final String TAG_ID="id";
 
     private JSONParser jsonParser;
     private ProgressDialog pDialog;
@@ -106,6 +111,7 @@ public class UserDetailsActivity extends Activity {
         ArrayList<String> full_names = hdb.getDoctorsFullName();
         hdb.close();
 
+        jsonParser = new JSONParser();
 
         ArrayAdapter adapter = new ArrayAdapter(UserDetailsActivity.this, R.layout.spinner_item, R.id.tvSpinnerCategories, full_names);
         sDoctors.setAdapter(adapter);
@@ -115,11 +121,8 @@ public class UserDetailsActivity extends Activity {
             llAccount.setVisibility(View.GONE);
 
             onoma.setText(userName);
-
             etSurname.setText(userSurname);
 
-
-            jsonParser = new JSONParser();
             new GetUser().execute();
 
         }
@@ -134,8 +137,10 @@ public class UserDetailsActivity extends Activity {
                 // TODO Auto-generated method stub
                 if (rb_male.isChecked()) {
                     Sfylo = "Άνδρας";
+                    sex=1;
                 } else if (rb_female.isChecked()) {
                     Sfylo = "Γυναίκα";
+                    sex=0;
                 }
             }
         });
@@ -150,14 +155,17 @@ public class UserDetailsActivity extends Activity {
         btOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String Sonoma, Silikia, Sypsos, Sbaros, SistorikoPathiseon, Semail;
-
+                String Sonoma, Silikia, Sypsos, Sbaros, SistorikoPathiseon, SUsername,SPassword,Ssurname;
+                boolean flag=true;
 
                 Sonoma = String.valueOf(onoma.getText());
                 Silikia = String.valueOf(ilikia.getText());
                 Sypsos = String.valueOf(ypsos.getText());
                 Sbaros = String.valueOf(baros.getText());
-                // Semail = String.valueOf(email.getText());
+                Ssurname=String.valueOf(etSurname.getText());
+                SistorikoPathiseon = String.valueOf(istorikoPathiseon.getText());
+
+
 
                 if (Silikia.equals("")) {
                     Silikia = "0";
@@ -169,17 +177,40 @@ public class UserDetailsActivity extends Activity {
                     Sbaros = "0";
                 }
 
-                SistorikoPathiseon = String.valueOf(istorikoPathiseon.getText());
+
+
                 SharedPrefsManager spmanager = new SharedPrefsManager(UserDetailsActivity.this);
+
+
+                if(userID==-1){
+                    SUsername=String.valueOf(etUsername.getText());
+                    SPassword=String.valueOf(etPassword.getText());
+
+                    if(SUsername.equals("") || SPassword.equals("")){
+                        Toast.makeText(UserDetailsActivity.this,"Παρακαλώ γράψτε τα πεδία Όνομα Λογαριασμού - Κωδικός",Toast.LENGTH_LONG).show();
+                        flag=false;
+                    }else{
+                        flag=true;
+                        spmanager.startEditing();
+                        spmanager.setPrefsUsername(SUsername);
+                        spmanager.setPrefsPassword(SPassword);
+                        spmanager.commit();
+                     new createUser().execute();
+
+                    }
+                }
+
+
                 spmanager.startEditing();
-                //setaro
+
                 spmanager.setPrefsOnoma(Sonoma);
+                spmanager.setPrefsSurname(Ssurname);
                 spmanager.setPrefsIlikia(Integer.parseInt(Silikia));
                 spmanager.setPrefsYpsos(Float.parseFloat(Sypsos));
                 spmanager.setPrefsBaros(Float.parseFloat(Sbaros));
                 spmanager.setPrefsIstorikoPathiseon(SistorikoPathiseon);
-                //   spmanager.setPrefsEmail(Semail);
                 spmanager.setPrefsFylo(Sfylo);
+
 
                 spmanager.commit();
 
@@ -188,11 +219,10 @@ public class UserDetailsActivity extends Activity {
                     spmanager.startEditing();
                     spmanager.setPrefsStart(true);
                     spmanager.commit();
+                }
+
+                if(flag){
                     startActivity(new Intent(UserDetailsActivity.this, HomeActivity.class));
-
-                } else {
-
-                    finish();
                 }
 
 
@@ -237,7 +267,7 @@ public class UserDetailsActivity extends Activity {
                      age = json.getInt(TAG_AGE);
                      male = json.getInt(TAG_MALE);
                      history = json.getString(TAG_HISTORY);
-                     weight = json.getInt(TAG_AGE);
+                     weight = json.getInt(TAG_WEIGHT);
 
                     Log.i("values",age +" - "+ male + " - "+history + " - "+weight);
 
@@ -273,4 +303,45 @@ public class UserDetailsActivity extends Activity {
 
 
     }
+
+
+    class createUser extends AsyncTask<String, String, String>{
+
+        @Override
+        protected String doInBackground(String... args) {
+            List<NameValuePair> params = new ArrayList<>();
+
+            params.add(new BasicNameValuePair("username",etUsername.getText().toString()));
+            params.add(new BasicNameValuePair("password",etPassword.getText().toString()));
+            params.add(new BasicNameValuePair("name",onoma.getText().toString()));
+            params.add(new BasicNameValuePair("surname", etSurname.getText().toString()));
+            params.add(new BasicNameValuePair("age", Integer.parseInt(ilikia.getText().toString())+""));
+            params.add(new BasicNameValuePair("male",sex+ ""));
+            params.add(new BasicNameValuePair("history", istorikoPathiseon.getText().toString()));
+            params.add(new BasicNameValuePair("weight", Integer.parseInt(baros.getText().toString())+""));
+
+            String doctor_full_name=sDoctors.getSelectedItem().toString();
+            String tokens[]=doctor_full_name.split(" ");
+
+            params.add(new BasicNameValuePair("doctor_name", tokens[0]));
+            params.add(new BasicNameValuePair("doctor_surname", tokens[1]));
+
+            JSONObject json = jsonParser.makeHttpRequest(create_user_url, "POST", params);
+            try {
+                cuSuccess = json.getInt(TAG_SUCCESS);
+               Log.i("cuSuccess",cuSuccess+"");
+
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return "";
+        }
+
+    }
+
+
+
 }

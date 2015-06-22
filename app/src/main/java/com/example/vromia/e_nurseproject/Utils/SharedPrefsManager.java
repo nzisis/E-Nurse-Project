@@ -16,11 +16,13 @@ public class SharedPrefsManager {
 
     //Shared Preferences attributes
     private static final String PREFS_ONOMA = "onoma";
+    private static final String PREFS_SURNAME = "surname";
     private static final String PREFS_ILIKIA = "ilikia";
     private static final String PREFS_YPSOS = "ypsos";
     private static final String PREFS_BAROS = "baros";
     private static final String PREFS_ISTORIKOPATHISEON = "istorikoPathiseon";
-    private static final String PREFS_EMAIL = "email";
+    private static final String PREFS_USERNAME="username";
+    private static final String PREFS_PASSWORD="password";
     private static final String PREFS_FYLO = "fylo";
     private static final String PREFS_START_OFF_APP="start of app";
 
@@ -43,11 +45,26 @@ public class SharedPrefsManager {
         editor = prefs.edit();
     }
 
+
+
+
     /**
      * Below are the setters and getters for each attribute
      */
     public boolean getPrefsStart(){
         return prefs.getBoolean(PREFS_START_OFF_APP,false);
+    }
+
+    public String getPrefsSurname(){
+        return prefs.getString(PREFS_SURNAME, "");
+    }
+
+    public String getPrefsUsername(){
+        return prefs.getString(PREFS_USERNAME, "");
+    }
+
+    public String getPrefsPassword(){
+        return prefs.getString(PREFS_PASSWORD,"");
     }
 
     public String getPrefsOnoma() {
@@ -70,9 +87,6 @@ public class SharedPrefsManager {
         return prefs.getString(PREFS_ISTORIKOPATHISEON, "");
     }
 
-    public String getPrefsEmail() {
-        return prefs.getString(PREFS_EMAIL, "");
-    }
 
     public String getPrefsFylo() {
         return prefs.getString(PREFS_FYLO, "");
@@ -82,8 +96,17 @@ public class SharedPrefsManager {
         editor.putString(PREFS_ONOMA, onoma);
     }
 
-    public void setPrefsEmail(String email) {
-        editor.putString(PREFS_EMAIL, email);
+
+    public void setPrefsSurname(String surname){
+        editor.putString(PREFS_SURNAME,surname);
+    }
+
+    public void setPrefsUsername(String username){
+        editor.putString(PREFS_USERNAME,username);
+    }
+
+    public void setPrefsPassword(String password){
+        editor.putString(PREFS_PASSWORD,password);
     }
 
     public void setPrefsIlikia(int ilikia) {

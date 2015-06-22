@@ -46,7 +46,7 @@ public class JSONParser {
                 //Create a HttpPost that will request from a server with post method
                 HttpPost httpPost = new HttpPost(url);
                 //Set the entity of this http post, more specific the params that php script needs to check
-                httpPost.setEntity(new UrlEncodedFormEntity(params));
+                httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
                 //take the response of server
                 HttpResponse httpResponse = httpClient.execute(httpPost);
 

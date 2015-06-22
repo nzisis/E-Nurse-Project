@@ -17,7 +17,9 @@
                 android:id="@+id/llAccount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:focusable="true"
+                >
 
 
                 <TextView
@@ -119,7 +121,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:weightSum="1">
+                android:weightSum="1"
+                android:focusable="true">
 
                 <me.grantland.widget.AutofitTextView
                     android:layout_width="match_parent"
