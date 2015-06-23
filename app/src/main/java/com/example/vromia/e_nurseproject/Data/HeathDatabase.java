@@ -115,6 +115,32 @@ public class HeathDatabase extends SQLiteOpenHelper {
         db.insert(TABLE_DOCTORS, null, cv);
     }
 
+
+    public boolean dietTupleExists(String category,String mealTime){
+
+        Cursor cursor=getReadableDatabase().rawQuery("SELECT * FROM "+TABLE_DIET + " WHERE "+KEY_DIET_CATEGORY + " = "+ "'"+category+"' AND "+KEY_DIET_TIME +" = '"+mealTime+"'" ,null);
+        if(cursor.getCount()>0){
+            return true;
+        }
+
+        return false;
+
+    }
+
+
+    public boolean workoutTupleExists(String category,double duration,String date){
+
+        Cursor cursor=getReadableDatabase().rawQuery("SELECT * FROM "+TABLE_WORKOUT+ " WHERE "+KEY_WORKOUT_CATEGORY + " = "+ "'"+category+"' AND "+KEY_WORKOUT_DATE +" = '"+date+"'"
+                + " AND "+KEY_WORKOUT_TIME +" = "+ duration,null);
+        if(cursor.getCount()>0){
+            return true;
+        }
+
+        return false;
+
+    }
+
+
     public String showDoctors() {
         Cursor cursor = getReadableDatabase().rawQuery("SELECT * FROM " + TABLE_DOCTORS, null);
         if (cursor != null) {
@@ -125,6 +151,8 @@ public class HeathDatabase extends SQLiteOpenHelper {
         }
         return null;
     }
+
+
 
     public ArrayList<String> getDoctorsFullName() {
         ArrayList<String> full_names = new ArrayList<>();

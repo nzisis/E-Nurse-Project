@@ -20,6 +20,7 @@ import com.example.vromia.e_nurseproject.Data.DoctorItem;
 import com.example.vromia.e_nurseproject.Data.HeathDatabase;
 import com.example.vromia.e_nurseproject.R;
 import com.example.vromia.e_nurseproject.Utils.JSONParser;
+import com.example.vromia.e_nurseproject.Utils.SharedPrefsManager;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -33,7 +34,7 @@ import java.util.List;
 
 public class LoginActivity extends Activity {
 
-    private ProgressDialog pDialog;
+
     private EditText etUsername, etPassword;
     private Button bConnect, bCreateUser;
     private int userID;
@@ -164,6 +165,7 @@ public class LoginActivity extends Activity {
                 if(haveNetworkConnection()) {
                     Intent intent = new Intent(LoginActivity.this, UserDetailsActivity.class);
                     startActivity(intent);
+                    finish();
                 }else {
                     Toast.makeText(LoginActivity.this, "Παρακαλώ συνδεθείτε στο Διαδίκτυο", Toast.LENGTH_LONG).show();
                 }
@@ -230,6 +232,11 @@ public class LoginActivity extends Activity {
 
                 if (success == 1) {
                     userID = json.getInt(TAG_USERID);
+                    SharedPrefsManager manager=new SharedPrefsManager(LoginActivity.this);
+                    manager.startEditing();
+                    manager.setPrefsUserID(userID);
+                    manager.commit();
+                    Log.i("UserID",userID+"");
                     userName = json.getString(TAG_DOCTORNAME);
                     userSuname = json.getString(TAG_DOCTORSURNAME);
                 } else {
@@ -254,6 +261,7 @@ public class LoginActivity extends Activity {
                 intent.putExtra("userName", userName);
                 intent.putExtra("userSurname", userSuname);
                 startActivity(intent);
+                finish();
             } else {
                 Toast.makeText(LoginActivity.this, "Λάθος στοιχεία προσπαθήστε ξανά ή δημιουργήστε καινούριο λογαριασμό", Toast.LENGTH_LONG).show();
             }

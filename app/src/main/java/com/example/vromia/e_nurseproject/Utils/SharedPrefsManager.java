@@ -25,6 +25,7 @@ public class SharedPrefsManager {
     private static final String PREFS_PASSWORD="password";
     private static final String PREFS_FYLO = "fylo";
     private static final String PREFS_START_OFF_APP="start of app";
+    private static final String PREFS_USERID="userID";
 
     //the SharedPreferences and Editor objects
     SharedPreferences prefs;
@@ -50,7 +51,14 @@ public class SharedPrefsManager {
 
     /**
      * Below are the setters and getters for each attribute
+     *
      */
+
+    public int getPrefsUserID(){
+        return prefs.getInt(PREFS_USERID,-1);
+    }
+
+
     public boolean getPrefsStart(){
         return prefs.getBoolean(PREFS_START_OFF_APP,false);
     }
@@ -94,6 +102,11 @@ public class SharedPrefsManager {
 
     public void setPrefsOnoma(String onoma) {
         editor.putString(PREFS_ONOMA, onoma);
+    }
+
+
+    public void setPrefsUserID(int userID){
+        editor.putInt(PREFS_USERID,userID);
     }
 
 

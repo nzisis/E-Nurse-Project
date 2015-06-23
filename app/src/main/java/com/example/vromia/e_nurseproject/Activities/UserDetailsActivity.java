@@ -60,7 +60,7 @@ public class UserDetailsActivity extends Activity {
     private static final String TAG_MALE = "male";
     private static final String TAG_WEIGHT = "weight";
     private static final String TAG_CUSUCCESS="success";
-    private static final String TAG_ID="id";
+    private static final String TAG_ID="userID";
 
     private JSONParser jsonParser;
     private ProgressDialog pDialog;
@@ -223,6 +223,7 @@ public class UserDetailsActivity extends Activity {
 
                 if(flag){
                     startActivity(new Intent(UserDetailsActivity.this, HomeActivity.class));
+                    finish();
                 }
 
 
@@ -327,9 +328,17 @@ public class UserDetailsActivity extends Activity {
             params.add(new BasicNameValuePair("doctor_surname", tokens[1]));
 
             JSONObject json = jsonParser.makeHttpRequest(create_user_url, "POST", params);
+
             try {
                 cuSuccess = json.getInt(TAG_SUCCESS);
-               Log.i("cuSuccess",cuSuccess+"");
+                int userID=json.getInt(TAG_ID);
+                SharedPrefsManager manager=new SharedPrefsManager(UserDetailsActivity.this);
+                manager.startEditing();
+                manager.setPrefsUserID(userID);
+                manager.commit();
+
+
+               Log.i("USERID",userID+"");
 
 
 
