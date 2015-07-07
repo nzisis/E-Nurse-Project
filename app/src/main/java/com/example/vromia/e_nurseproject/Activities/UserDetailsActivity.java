@@ -46,10 +46,10 @@ public class UserDetailsActivity extends Activity {
     private Spinner sDoctors;
 
     private int userID = -1;
-    private int cuSuccess= -1;
-    private int sex=-1;
-    private String userName,userSurname,history;
-    private int age,male,weight;
+    private int cuSuccess = -1;
+    private int sex = -1;
+    private String userName, userSurname, history;
+    private int age, male, weight;
 
     private static String user_details_url = "http://nikozisi.webpages.auth.gr/enurse/get_user_details.php";
     private static String create_user_url = "http://nikozisi.webpages.auth.gr/enurse/create_user.php";
@@ -59,8 +59,8 @@ public class UserDetailsActivity extends Activity {
     private static final String TAG_HISTORY = "history";
     private static final String TAG_MALE = "male";
     private static final String TAG_WEIGHT = "weight";
-    private static final String TAG_CUSUCCESS="success";
-    private static final String TAG_ID="userID";
+    private static final String TAG_CUSUCCESS = "success";
+    private static final String TAG_ID = "userID";
 
     private JSONParser jsonParser;
     private ProgressDialog pDialog;
@@ -72,14 +72,15 @@ public class UserDetailsActivity extends Activity {
         setContentView(R.layout.activity_user_details);
         initUI();
         userID = getIntent().getIntExtra("userID", -1);
-        if(userID!=-1){
-            userName=getIntent().getStringExtra("userName");
-            userSurname=getIntent().getStringExtra("userSurname");
+        if (userID != -1) {
+            userName = getIntent().getStringExtra("userName");
+            userSurname = getIntent().getStringExtra("userSurname");
             //Log.i("Surname",userSurname);
         }
 
         setUpUI();
         initListeners();
+        fillUIWithValues();
     }
 
     private void initUI() {
@@ -105,6 +106,20 @@ public class UserDetailsActivity extends Activity {
         rb_female = (RadioButton) findViewById(R.id.rb_female);
     }
 
+
+    private void fillUIWithValues() {
+        SharedPrefsManager manager = new SharedPrefsManager(UserDetailsActivity.this);
+        onoma.setText(manager.getPrefsOnoma());
+        etSurname.setText(manager.getPrefsSurname());
+        ilikia.setText(manager.getPrefsIlikia() + "");
+        ypsos.setText(manager.getYpsos() + "");
+        baros.setText(manager.getPrefsBaros() + "");
+        if (manager.getPrefsFylo().equals("Άνδρας")) {
+            rb_male.setChecked(true);
+        } else {
+            rb_female.setChecked(true);
+        }
+    }
 
     private void setUpUI() {
         hdb = new HeathDatabase(UserDetailsActivity.this);
@@ -137,10 +152,10 @@ public class UserDetailsActivity extends Activity {
                 // TODO Auto-generated method stub
                 if (rb_male.isChecked()) {
                     Sfylo = "Άνδρας";
-                    sex=1;
+                    sex = 1;
                 } else if (rb_female.isChecked()) {
                     Sfylo = "Γυναίκα";
-                    sex=0;
+                    sex = 0;
                 }
             }
         });
@@ -155,16 +170,15 @@ public class UserDetailsActivity extends Activity {
         btOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String Sonoma, Silikia, Sypsos, Sbaros, SistorikoPathiseon, SUsername,SPassword,Ssurname;
-                boolean flag=true;
+                String Sonoma, Silikia, Sypsos, Sbaros, SistorikoPathiseon, SUsername, SPassword, Ssurname;
+                boolean flag = true;
 
                 Sonoma = String.valueOf(onoma.getText());
                 Silikia = String.valueOf(ilikia.getText());
                 Sypsos = String.valueOf(ypsos.getText());
                 Sbaros = String.valueOf(baros.getText());
-                Ssurname=String.valueOf(etSurname.getText());
+                Ssurname = String.valueOf(etSurname.getText());
                 SistorikoPathiseon = String.valueOf(istorikoPathiseon.getText());
-
 
 
                 if (Silikia.equals("")) {
@@ -178,24 +192,23 @@ public class UserDetailsActivity extends Activity {
                 }
 
 
-
                 SharedPrefsManager spmanager = new SharedPrefsManager(UserDetailsActivity.this);
 
 
-                if(userID==-1){
-                    SUsername=String.valueOf(etUsername.getText());
-                    SPassword=String.valueOf(etPassword.getText());
+                if (userID == -1) {
+                    SUsername = String.valueOf(etUsername.getText());
+                    SPassword = String.valueOf(etPassword.getText());
 
-                    if(SUsername.equals("") || SPassword.equals("")){
-                        Toast.makeText(UserDetailsActivity.this,"Παρακαλώ γράψτε τα πεδία Όνομα Λογαριασμού - Κωδικός",Toast.LENGTH_LONG).show();
-                        flag=false;
-                    }else{
-                        flag=true;
+                    if (SUsername.equals("") || SPassword.equals("")) {
+                        Toast.makeText(UserDetailsActivity.this, "Παρακαλώ γράψτε τα πεδία Όνομα Λογαριασμού - Κωδικός", Toast.LENGTH_LONG).show();
+                        flag = false;
+                    } else {
+                        flag = true;
                         spmanager.startEditing();
                         spmanager.setPrefsUsername(SUsername);
                         spmanager.setPrefsPassword(SPassword);
                         spmanager.commit();
-                     new createUser().execute();
+                        new createUser().execute();
 
                     }
                 }
@@ -221,12 +234,10 @@ public class UserDetailsActivity extends Activity {
                     spmanager.commit();
                 }
 
-                if(flag){
+                if (flag) {
                     startActivity(new Intent(UserDetailsActivity.this, HomeActivity.class));
                     finish();
                 }
-
-
 
 
             }
@@ -264,14 +275,13 @@ public class UserDetailsActivity extends Activity {
                 int success = json.getInt(TAG_SUCCESS);
 
                 if (success == 1) {
-                    Log.i("Success","success");
-                     age = json.getInt(TAG_AGE);
-                     male = json.getInt(TAG_MALE);
-                     history = json.getString(TAG_HISTORY);
-                     weight = json.getInt(TAG_WEIGHT);
+                    Log.i("Success", "success");
+                    age = json.getInt(TAG_AGE);
+                    male = json.getInt(TAG_MALE);
+                    history = json.getString(TAG_HISTORY);
+                    weight = json.getInt(TAG_WEIGHT);
 
-                    Log.i("values",age +" - "+ male + " - "+history + " - "+weight);
-
+                    Log.i("values", age + " - " + male + " - " + history + " - " + weight);
 
 
                 } else {
@@ -289,8 +299,8 @@ public class UserDetailsActivity extends Activity {
         @Override
         protected void onPostExecute(String o) {
             super.onPostExecute(o);
-             pDialog.dismiss();
-            ilikia.setText(age+"");
+            pDialog.dismiss();
+            ilikia.setText(age + "");
             if (male == 1) {
                 rb_male.setChecked(true);
             } else {
@@ -298,7 +308,7 @@ public class UserDetailsActivity extends Activity {
             }
 
             istorikoPathiseon.setText(history);
-            baros.setText(weight+"");
+            baros.setText(weight + "");
 
         }
 
@@ -306,23 +316,23 @@ public class UserDetailsActivity extends Activity {
     }
 
 
-    class createUser extends AsyncTask<String, String, String>{
+    class createUser extends AsyncTask<String, String, String> {
 
         @Override
         protected String doInBackground(String... args) {
             List<NameValuePair> params = new ArrayList<>();
 
-            params.add(new BasicNameValuePair("username",etUsername.getText().toString()));
-            params.add(new BasicNameValuePair("password",etPassword.getText().toString()));
-            params.add(new BasicNameValuePair("name",onoma.getText().toString()));
+            params.add(new BasicNameValuePair("username", etUsername.getText().toString()));
+            params.add(new BasicNameValuePair("password", etPassword.getText().toString()));
+            params.add(new BasicNameValuePair("name", onoma.getText().toString()));
             params.add(new BasicNameValuePair("surname", etSurname.getText().toString()));
-            params.add(new BasicNameValuePair("age", Integer.parseInt(ilikia.getText().toString())+""));
-            params.add(new BasicNameValuePair("male",sex+ ""));
+            params.add(new BasicNameValuePair("age", Integer.parseInt(ilikia.getText().toString()) + ""));
+            params.add(new BasicNameValuePair("male", sex + ""));
             params.add(new BasicNameValuePair("history", istorikoPathiseon.getText().toString()));
-            params.add(new BasicNameValuePair("weight", Integer.parseInt(baros.getText().toString())+""));
+            params.add(new BasicNameValuePair("weight", Integer.parseInt(baros.getText().toString()) + ""));
 
-            String doctor_full_name=sDoctors.getSelectedItem().toString();
-            String tokens[]=doctor_full_name.split(" ");
+            String doctor_full_name = sDoctors.getSelectedItem().toString();
+            String tokens[] = doctor_full_name.split(" ");
 
             params.add(new BasicNameValuePair("doctor_name", tokens[0]));
             params.add(new BasicNameValuePair("doctor_surname", tokens[1]));
@@ -331,15 +341,14 @@ public class UserDetailsActivity extends Activity {
 
             try {
                 cuSuccess = json.getInt(TAG_SUCCESS);
-                int userID=json.getInt(TAG_ID);
-                SharedPrefsManager manager=new SharedPrefsManager(UserDetailsActivity.this);
+                int userID = json.getInt(TAG_ID);
+                SharedPrefsManager manager = new SharedPrefsManager(UserDetailsActivity.this);
                 manager.startEditing();
                 manager.setPrefsUserID(userID);
                 manager.commit();
 
 
-               Log.i("USERID",userID+"");
-
+                Log.i("USERID", userID + "");
 
 
             } catch (JSONException e) {
@@ -350,7 +359,6 @@ public class UserDetailsActivity extends Activity {
         }
 
     }
-
 
 
 }

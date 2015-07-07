@@ -22,7 +22,7 @@
 
         <Preference
             android:key="key_export"
-            android:title="Εξαγωγη δεδομενων σε αρχειο" />
+            android:title="Συγχρονισμός Δεδομένων" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="Σχετικα">
