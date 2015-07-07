@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:weightSum="6">
+
+    <EditText
+        android:id="@+id/etDiseaseName"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:textColor="@color/black" />
+
+    <ImageButton
+        android:id="@+id/ibDelete"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="5"
+        style="@android:style/Widget.DeviceDefault.Button.Borderless"
+        android:src="@drawable/ic_delete" />
+
+</LinearLayout>

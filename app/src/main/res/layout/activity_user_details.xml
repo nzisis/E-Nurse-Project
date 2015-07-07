@@ -17,9 +17,8 @@
                 android:id="@+id/llAccount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:focusable="true"
-                >
+                android:orientation="vertical">
 
 
                 <TextView
@@ -121,8 +120,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:weightSum="1"
-                android:focusable="true">
+                android:focusable="true"
+                android:weightSum="1">
 
                 <me.grantland.widget.AutofitTextView
                     android:layout_width="match_parent"
@@ -341,14 +340,6 @@
                     android:textStyle="italic" />
 
 
-                <ImageButton
-                    android:id="@+id/ibAddHistory"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_weight="0.8" />
-
-
             </LinearLayout>
 
 
@@ -359,23 +350,45 @@
                 android:layout_marginBottom="3dp"
                 android:background="@drawable/line_separator" />
 
-            <LinearLayout
-                android:id="@+id/llDiseaseHistory"
+            <ImageButton
+                android:id="@+id/ibAddHistory"
+                style="@android:style/Widget.DeviceDefault.Button.Borderless"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="0.8"
+                android:src="@drawable/ic_plus" />
 
-                <EditText
-                    android:id="@+id/istorikoPathiseon"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint=" π.χ. διαβήτης"
-                    android:inputType="text"
-                    android:textColor="#de000000"
-                    android:textSize="20sp" />
 
-            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/llDiseases"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+            <!--<ListView-->
+            <!--android:id="@+id/lvDiseaseHistory"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:minHeight="400dp" />-->
+
+            <!--<LinearLayout-->
+            <!--android:id="@+id/llDiseaseHistory"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<EditText-->
+            <!--android:id="@+id/istorikoPathiseon"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:ems="10"-->
+            <!--android:hint=" π.χ. διαβήτης"-->
+            <!--android:inputType="text"-->
+            <!--android:textColor="#de000000"-->
+            <!--android:textSize="20sp" />-->
+
+            <!--</LinearLayout>-->
 
 
             <TextView

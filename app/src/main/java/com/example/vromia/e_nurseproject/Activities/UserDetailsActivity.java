@@ -3,15 +3,23 @@ package com.example.vromia.e_nurseproject.Activities;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -37,13 +45,17 @@ import java.util.List;
 public class UserDetailsActivity extends Activity {
 
     private EditText onoma, ilikia, ypsos, baros, istorikoPathiseon, email, etSurname, etUsername, etPassword;
-    private LinearLayout llAccount;
+    private LinearLayout llAccount, llDiseases;
+    private ListView listview;
     private RadioGroup fylo;
     private Button btBack, btOk;
+    private ImageButton btAdd;
     private RadioButton rb_male, rb_female;
     private String Sfylo = "";
     private HeathDatabase hdb;
     private Spinner sDoctors;
+
+    private ArrayList<String> diseases;
 
     private int userID = -1;
     private int cuSuccess = -1;
@@ -65,18 +77,28 @@ public class UserDetailsActivity extends Activity {
     private JSONParser jsonParser;
     private ProgressDialog pDialog;
 
+    private SharedPrefsManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_details);
+
+        manager = new SharedPrefsManager(UserDetailsActivity.this);
+
         initUI();
         userID = getIntent().getIntExtra("userID", -1);
         if (userID != -1) {
             userName = getIntent().getStringExtra("userName");
             userSurname = getIntent().getStringExtra("userSurname");
             //Log.i("Surname",userSurname);
+        } else {
+            if (manager.getPrefsUserID() != -1) {
+                userName = manager.getPrefsUsername();
+                userSurname = manager.getPrefsSurname();
+            }
         }
+
 
         setUpUI();
         initListeners();
@@ -89,18 +111,24 @@ public class UserDetailsActivity extends Activity {
         etPassword = (EditText) findViewById(R.id.etPassword);
 
 
+//        listview = (ListView) findViewById(R.id.lvDiseaseHistory);
+//        setListViewHeightBasedOnChildren(listview);
+
+        llDiseases = (LinearLayout) findViewById(R.id.llDiseases);
+
         onoma = (EditText) findViewById(R.id.onoma);
         etSurname = (EditText) findViewById(R.id.etsurname);
         ilikia = (EditText) findViewById(R.id.ilikia);
 
         ypsos = (EditText) findViewById(R.id.ypsos);
         baros = (EditText) findViewById(R.id.baros);
-        istorikoPathiseon = (EditText) findViewById(R.id.istorikoPathiseon);
+//        istorikoPathiseon = (EditText) findViewById(R.id.istorikoPathiseon);
         fylo = (RadioGroup) findViewById(R.id.fylo);
         sDoctors = (Spinner) findViewById(R.id.spDoctors);
 
         btBack = (Button) findViewById(R.id.btBack);
         btOk = (Button) findViewById(R.id.btOk);
+        btAdd = (ImageButton) findViewById(R.id.ibAddHistory);
 
         rb_male = (RadioButton) findViewById(R.id.rb_male);
         rb_female = (RadioButton) findViewById(R.id.rb_female);
@@ -108,7 +136,6 @@ public class UserDetailsActivity extends Activity {
 
 
     private void fillUIWithValues() {
-        SharedPrefsManager manager = new SharedPrefsManager(UserDetailsActivity.this);
         onoma.setText(manager.getPrefsOnoma());
         etSurname.setText(manager.getPrefsSurname());
         ilikia.setText(manager.getPrefsIlikia() + "");
@@ -119,6 +146,12 @@ public class UserDetailsActivity extends Activity {
         } else {
             rb_female.setChecked(true);
         }
+        diseases = new ArrayList<>();
+        String d[] = manager.getPrefsIstorikoPathiseon().split("-");
+        for (String i : d) {
+            diseases.add(i);
+        }
+        addDiseases();
     }
 
     private void setUpUI() {
@@ -128,23 +161,104 @@ public class UserDetailsActivity extends Activity {
 
         jsonParser = new JSONParser();
 
-        ArrayAdapter adapter = new ArrayAdapter(UserDetailsActivity.this, R.layout.spinner_item, R.id.tvSpinnerCategories, full_names);
+        final ArrayAdapter adapter = new ArrayAdapter(UserDetailsActivity.this, R.layout.spinner_item, R.id.tvSpinnerCategories, full_names);
         sDoctors.setAdapter(adapter);
 
 
-        if (userID != -1) {
+        if (userID != -1 || manager.getPrefsUserID() != -1) {
             llAccount.setVisibility(View.GONE);
 
             onoma.setText(userName);
             etSurname.setText(userSurname);
-
             new GetUser().execute();
 
         }
 
 
+        btAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                diseases.add("Nikos");
+                diseases.add("");
+                addDiseases();
+            }
+        });
+//        listview.setAdapter(new DiseaseAdapter(UserDetailsActivity.this, diseases));
+
+
     }
 
+
+    private void addDiseases() {
+        llDiseases.removeAllViewsInLayout();
+        for (int i = 0; i < diseases.size(); i++) {
+
+            final int pos = i;
+            /**
+             * inflate items/ add items in linear layout instead of listview
+             */
+            LayoutInflater inflater = null;
+            inflater = (LayoutInflater) getApplicationContext()
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View mLinearView = inflater.inflate(R.layout.list_item_disease_history, null);
+            /**
+             * getting id of row.xml
+             */
+            EditText diseaseName = (EditText) mLinearView
+                    .findViewById(R.id.etDiseaseName);
+            diseaseName.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    diseases.set(pos, s.toString());
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+            ImageButton imageButton = (ImageButton) mLinearView
+                    .findViewById(R.id.ibDelete);
+
+            imageButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    diseases.remove(pos);
+                    addDiseases();
+                }
+            });
+            /**
+             * set item into row
+             */
+            final String fName = diseases.get(i);
+            diseaseName.setText(fName);
+
+            /**
+             * add view in top linear
+             */
+
+            llDiseases.addView(mLinearView);
+
+            /**
+             * get item row on click
+             *
+             */
+            mLinearView.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    // TODO Auto-generated method stub
+                    Toast.makeText(UserDetailsActivity.this, "Clicked item;" + fName,
+                            Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
 
     private void initListeners() {
         fylo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -159,6 +273,7 @@ public class UserDetailsActivity extends Activity {
                 }
             }
         });
+
 
         btBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,8 +293,14 @@ public class UserDetailsActivity extends Activity {
                 Sypsos = String.valueOf(ypsos.getText());
                 Sbaros = String.valueOf(baros.getText());
                 Ssurname = String.valueOf(etSurname.getText());
-                SistorikoPathiseon = String.valueOf(istorikoPathiseon.getText());
-
+                SistorikoPathiseon = "";
+                for (int i = 0; i < diseases.size(); i++) {
+                    if (!diseases.get(i).trim().equals("")) {
+                        SistorikoPathiseon += diseases.get(i) + "-";
+                    }
+                }
+                SistorikoPathiseon = SistorikoPathiseon.substring(0, SistorikoPathiseon.length() - 1);
+                Log.i("nikos", SistorikoPathiseon);
 
                 if (Silikia.equals("")) {
                     Silikia = "0";
@@ -195,11 +316,12 @@ public class UserDetailsActivity extends Activity {
                 SharedPrefsManager spmanager = new SharedPrefsManager(UserDetailsActivity.this);
 
 
-                if (userID == -1) {
+                Log.i("nikos" , "userid = " + userID + "   prefs=" + manager.getPrefsUserID());
+                if (userID == -1 && manager.getPrefsUserID() == -1) {
                     SUsername = String.valueOf(etUsername.getText());
                     SPassword = String.valueOf(etPassword.getText());
 
-                    if (SUsername.equals("") || SPassword.equals("")) {
+                    if (SUsername.equals("")) {
                         Toast.makeText(UserDetailsActivity.this, "Παρακαλώ γράψτε τα πεδία Όνομα Λογαριασμού - Κωδικός", Toast.LENGTH_LONG).show();
                         flag = false;
                     } else {
@@ -307,7 +429,7 @@ public class UserDetailsActivity extends Activity {
                 rb_female.setChecked(true);
             }
 
-            istorikoPathiseon.setText(history);
+//            istorikoPathiseon.setText(history);
             baros.setText(weight + "");
 
         }
@@ -328,8 +450,8 @@ public class UserDetailsActivity extends Activity {
             params.add(new BasicNameValuePair("surname", etSurname.getText().toString()));
             params.add(new BasicNameValuePair("age", Integer.parseInt(ilikia.getText().toString()) + ""));
             params.add(new BasicNameValuePair("male", sex + ""));
-            params.add(new BasicNameValuePair("history", istorikoPathiseon.getText().toString()));
-            params.add(new BasicNameValuePair("weight", Integer.parseInt(baros.getText().toString()) + ""));
+//            params.add(new BasicNameValuePair("history", istorikoPathiseon.getText().toString()));
+            params.add(new BasicNameValuePair("weight", Float.parseFloat(baros.getText().toString()) + ""));
 
             String doctor_full_name = sDoctors.getSelectedItem().toString();
             String tokens[] = doctor_full_name.split(" ");
@@ -360,5 +482,63 @@ public class UserDetailsActivity extends Activity {
 
     }
 
+
+    public class DiseaseAdapter extends ArrayAdapter<String> {
+        public DiseaseAdapter(Context context, ArrayList<String> diseases) {
+            super(context, 0, diseases);
+        }
+
+        @Override
+        public View getView(final int position, View convertView, ViewGroup parent) {
+
+            // Get the data item for this position
+            String disease = getItem(position);
+
+
+            // Check if an existing view is being reused, otherwise inflate the view
+            if (convertView == null) {
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_disease_history, parent, false);
+            }
+            // Lookup view for data population
+            EditText etName = (EditText) convertView.findViewById(R.id.etDiseaseName);
+            ImageButton ibDelete = (ImageButton) convertView.findViewById(R.id.ibDelete);
+
+            // Populate the data into the template view using the data object
+            etName.setText(disease);
+            ibDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    diseases.remove(position);
+                    notifyDataSetChanged();
+                }
+            });
+
+            // Return the completed view to render on screen
+            return convertView;
+        }
+    }
+
+
+    public static void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null)
+            return;
+
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED);
+        int totalHeight = 0;
+        View view = null;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            view = listAdapter.getView(i, view, listView);
+            if (i == 0)
+                view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+            view.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+            totalHeight += view.getMeasuredHeight();
+        }
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+        listView.requestLayout();
+    }
 
 }
