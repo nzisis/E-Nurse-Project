@@ -104,7 +104,9 @@ public class HomeActivity extends Activity {
                 } else if (position == 1) {
                     startActivity(new Intent(HomeActivity.this, WorkoutActivity.class));
                 } else if (position == 2) {
-                    startActivity(new Intent(HomeActivity.this, UserDetailsActivity.class));
+                    Intent intent=new Intent(HomeActivity.this, UserDetailsActivity.class);
+                    intent.putExtra("Menu","menu");
+                    startActivity(intent);
                 } else if (position == 3) {
                     startActivity(new Intent(HomeActivity.this, HistoryActivity.class));
                 } else if (position == 4) {
@@ -194,7 +196,7 @@ public class HomeActivity extends Activity {
                         String dateTokens[]=date.split(" ");
 
 
-                        WorkoutItem item=new WorkoutItem(type,date,duration,"");
+                        WorkoutItem item=new WorkoutItem(type,dateTokens[0],duration,dateTokens[1]);
                         workoutItems.add(item);
 
                     }
@@ -216,13 +218,14 @@ public class HomeActivity extends Activity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-
+            boolean update=false;
             if(updateDiet){
 
                 for(int i=0; i<dietItems.size(); i++){
                     DietItem item=dietItems.get(i);
                     if(!db.dietTupleExists(item.getCategory(),item.getTime())){
                         db.InsertDiet(item);
+                        update=true;
                     }
 
                 }
@@ -235,6 +238,7 @@ public class HomeActivity extends Activity {
                     WorkoutItem workoutItem=workoutItems.get(i);
                     if(!db.workoutTupleExists(workoutItem.getCategory(), workoutItem.getWorkTime(), workoutItem.getDate())){
                         db.InsertWorkout(workoutItem);
+                        update=true;
                     }
 
                 }
@@ -242,7 +246,7 @@ public class HomeActivity extends Activity {
             }
 
 
-            if(updateWorkout || updateDiet){
+            if(update){
                 Toast.makeText(HomeActivity.this,"Πραγματοποιήθηκε ενημέρωση των δεδομένων σας",Toast.LENGTH_LONG).show();
             }
 

@@ -82,7 +82,6 @@
                     android:layout_weight="0.4"
                     android:editable="false"
                     android:ems="10"
-                    android:focusable="false"
                     android:hint="10"
                     android:inputType="number"
                     android:textColor="#de000000" />

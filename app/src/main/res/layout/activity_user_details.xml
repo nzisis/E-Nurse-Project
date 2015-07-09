@@ -27,7 +27,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:gravity="center"
-                    android:text="Στοχεία λογαριασμού"
+                    android:text="Στοιχεία λογαριασμού"
                     android:textColor="#003399"
                     android:textSize="30sp"
                     android:textStyle="italic" />

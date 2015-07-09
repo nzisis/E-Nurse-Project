@@ -62,6 +62,7 @@ public class UserDetailsActivity extends Activity {
     private int sex = -1;
     private String userName, userSurname, history;
     private int age, male, weight;
+    private String menu;
 
     private static String user_details_url = "http://nikozisi.webpages.auth.gr/enurse/get_user_details.php";
     private static String create_user_url = "http://nikozisi.webpages.auth.gr/enurse/create_user.php";
@@ -85,12 +86,17 @@ public class UserDetailsActivity extends Activity {
         setContentView(R.layout.activity_user_details);
 
         manager = new SharedPrefsManager(UserDetailsActivity.this);
+        diseases = new ArrayList<>();
 
         initUI();
         userID = getIntent().getIntExtra("userID", -1);
+        menu=getIntent().getStringExtra("Menu");
         if (userID != -1) {
             userName = getIntent().getStringExtra("userName");
             userSurname = getIntent().getStringExtra("userSurname");
+            manager.startEditing();
+            manager.setPrefsUserID(userID);
+            manager.commit();
             //Log.i("Surname",userSurname);
         } else {
             if (manager.getPrefsUserID() != -1) {
@@ -100,9 +106,13 @@ public class UserDetailsActivity extends Activity {
         }
 
 
+        if(menu!=null){
+            fillUIWithValues();
+        }
+
         setUpUI();
         initListeners();
-        fillUIWithValues();
+
     }
 
     private void initUI() {
@@ -136,6 +146,9 @@ public class UserDetailsActivity extends Activity {
 
 
     private void fillUIWithValues() {
+
+        llAccount.setVisibility(View.GONE);
+
         onoma.setText(manager.getPrefsOnoma());
         etSurname.setText(manager.getPrefsSurname());
         ilikia.setText(manager.getPrefsIlikia() + "");
@@ -146,7 +159,7 @@ public class UserDetailsActivity extends Activity {
         } else {
             rb_female.setChecked(true);
         }
-        diseases = new ArrayList<>();
+
         String d[] = manager.getPrefsIstorikoPathiseon().split("-");
         for (String i : d) {
             diseases.add(i);
@@ -165,7 +178,7 @@ public class UserDetailsActivity extends Activity {
         sDoctors.setAdapter(adapter);
 
 
-        if (userID != -1 || manager.getPrefsUserID() != -1) {
+        if (userID != -1 ) {
             llAccount.setVisibility(View.GONE);
 
             onoma.setText(userName);
@@ -173,6 +186,8 @@ public class UserDetailsActivity extends Activity {
             new GetUser().execute();
 
         }
+
+
 
 
         btAdd.setOnClickListener(new View.OnClickListener() {
@@ -294,14 +309,19 @@ public class UserDetailsActivity extends Activity {
                 Sbaros = String.valueOf(baros.getText());
                 Ssurname = String.valueOf(etSurname.getText());
                 SistorikoPathiseon = "";
-                for (int i = 0; i < diseases.size(); i++) {
-                    if (!diseases.get(i).trim().equals("")) {
-                        SistorikoPathiseon += diseases.get(i) + "-";
+                if(menu!=null){
+                    for (int i = 0; i < diseases.size(); i++) {
+                        if (!diseases.get(i).trim().equals("")) {
+                            SistorikoPathiseon += diseases.get(i) + "-";
+                        }
                     }
-                }
-                SistorikoPathiseon = SistorikoPathiseon.substring(0, SistorikoPathiseon.length() - 1);
-                Log.i("nikos", SistorikoPathiseon);
 
+                    SistorikoPathiseon = SistorikoPathiseon.substring(0, SistorikoPathiseon.length() - 1);
+                 }
+
+
+                Log.i("nikos", SistorikoPathiseon);
+/*
                 if (Silikia.equals("")) {
                     Silikia = "0";
                 }
@@ -310,13 +330,13 @@ public class UserDetailsActivity extends Activity {
                 }
                 if (Sbaros.equals("")) {
                     Sbaros = "0";
-                }
+                }*/
 
 
                 SharedPrefsManager spmanager = new SharedPrefsManager(UserDetailsActivity.this);
 
 
-                Log.i("nikos" , "userid = " + userID + "   prefs=" + manager.getPrefsUserID());
+                Log.i("nikos", "userid = " + userID + "   prefs=" + manager.getPrefsUserID());
                 if (userID == -1 && manager.getPrefsUserID() == -1) {
                     SUsername = String.valueOf(etUsername.getText());
                     SPassword = String.valueOf(etPassword.getText());
@@ -341,7 +361,7 @@ public class UserDetailsActivity extends Activity {
                 spmanager.setPrefsOnoma(Sonoma);
                 spmanager.setPrefsSurname(Ssurname);
                 spmanager.setPrefsIlikia(Integer.parseInt(Silikia));
-                spmanager.setPrefsYpsos(Float.parseFloat(Sypsos));
+//                spmanager.setPrefsYpsos(Float.parseFloat(Sypsos));
                 spmanager.setPrefsBaros(Float.parseFloat(Sbaros));
                 spmanager.setPrefsIstorikoPathiseon(SistorikoPathiseon);
                 spmanager.setPrefsFylo(Sfylo);
@@ -483,62 +503,5 @@ public class UserDetailsActivity extends Activity {
     }
 
 
-    public class DiseaseAdapter extends ArrayAdapter<String> {
-        public DiseaseAdapter(Context context, ArrayList<String> diseases) {
-            super(context, 0, diseases);
-        }
-
-        @Override
-        public View getView(final int position, View convertView, ViewGroup parent) {
-
-            // Get the data item for this position
-            String disease = getItem(position);
-
-
-            // Check if an existing view is being reused, otherwise inflate the view
-            if (convertView == null) {
-                convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_disease_history, parent, false);
-            }
-            // Lookup view for data population
-            EditText etName = (EditText) convertView.findViewById(R.id.etDiseaseName);
-            ImageButton ibDelete = (ImageButton) convertView.findViewById(R.id.ibDelete);
-
-            // Populate the data into the template view using the data object
-            etName.setText(disease);
-            ibDelete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    diseases.remove(position);
-                    notifyDataSetChanged();
-                }
-            });
-
-            // Return the completed view to render on screen
-            return convertView;
-        }
-    }
-
-
-    public static void setListViewHeightBasedOnChildren(ListView listView) {
-        ListAdapter listAdapter = listView.getAdapter();
-        if (listAdapter == null)
-            return;
-
-        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED);
-        int totalHeight = 0;
-        View view = null;
-        for (int i = 0; i < listAdapter.getCount(); i++) {
-            view = listAdapter.getView(i, view, listView);
-            if (i == 0)
-                view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, ViewGroup.LayoutParams.WRAP_CONTENT));
-
-            view.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
-            totalHeight += view.getMeasuredHeight();
-        }
-        ViewGroup.LayoutParams params = listView.getLayoutParams();
-        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
-        listView.setLayoutParams(params);
-        listView.requestLayout();
-    }
 
 }

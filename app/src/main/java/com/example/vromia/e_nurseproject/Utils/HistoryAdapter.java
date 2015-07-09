@@ -43,7 +43,7 @@ public class HistoryAdapter extends CursorAdapter {
             tvUnit.setText("(μερίδες)");
         } else {
             tvUnit.setText("(λεπτά)");
-            sep = ",";
+            sep = ", ";
         }
         tvDateTime.setText(cursor.getString(2) + sep + cursor.getString(4));
         tvAmount.setText(cursor.getString(3));
@@ -65,9 +65,9 @@ public class HistoryAdapter extends CursorAdapter {
             tvUnit.setText("(μερίδες)");
         } else {
             tvUnit.setText("(λεπτά)");
-            sep = ",";
+            sep = ", ";
         }
-        tvDateTime.setText(cursor.getString(2) + sep + cursor.getString(4));
+        tvDateTime.setText(cursor.getString(2) + sep+ cursor.getString(4));
         tvAmount.setText(cursor.getString(3));
 
     }
