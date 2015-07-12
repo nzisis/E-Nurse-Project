@@ -1,4 +1,0 @@
-**server**
-**username**
-**password**
-**DB Name**
