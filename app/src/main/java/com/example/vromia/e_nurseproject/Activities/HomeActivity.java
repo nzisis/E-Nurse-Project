@@ -114,7 +114,7 @@ public class HomeActivity extends Activity {
                 } else if (position == 4) {
                     startActivity(new Intent(HomeActivity.this, HistoryActivity.class));
                 } else if (position == 5) {
-
+                    startActivity(new Intent(HomeActivity.this, DrugsHistoryActivity.class));
                 }else if(position == 6){
                     startActivity(new Intent(HomeActivity.this, SettingsActivity.class));
                 }else if(position == 7){

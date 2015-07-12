@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/toggle"
+        android:orderInCategory="10"
+        android:showAsAction="always"
+        android:title="Τα φαρμακα μου">
+    </item>
+
+    <item
+        android:id="@+id/filters"
+        android:orderInCategory="10"
+        android:showAsAction="always"
+        android:title="Φίλτρα">
+
+        <menu>
+
+            <item
+                android:id="@+id/filtersDrugsRecent"
+                android:title="Πιο πρόσφατο" />
+            <item
+                android:id="@+id/filtersDrugsDate"
+                android:title="Ανά Ημερομηνία" />
+            <item
+                android:id="@+id/filtersDrugsCategory"
+                android:title="Ανά κατηγορία" />
+
+        </menu>
+
+    </item>
+
+</menu>

@@ -285,5 +285,50 @@ public class HeathDatabase extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public Cursor getDistDrugs(){
+        return getReadableDatabase().rawQuery("SELECT * FROM " + TABLE_DRUGS + " GROUP BY " + KEY_DRUGS_CATEGORY + " , " + KEY_DRUGS_CAUSE ,
+                null);
+    }
+
+
+    public Cursor getDrugsByCategory(String category) {
+
+        Cursor cursor = getReadableDatabase().rawQuery("SELECT * FROM " + TABLE_DRUGS
+                        + " WHERE " + KEY_DRUGS_CATEGORY + " LIKE '" + category
+                        + "' ORDER BY " + KEY_DRUGS_DATE + " DESC , " + KEY_DRUGS_ID + " DESC",
+                null);
+
+        return cursor;
+    }
+    //date param must be in format yyyy-mm-dd
+    public Cursor getDrugsByDate(String date) {
+
+        Cursor cursor = getReadableDatabase().rawQuery("SELECT * FROM " + TABLE_DRUGS
+                        + " WHERE " + KEY_DRUGS_DATE + " LIKE '" + date
+                        + "' ORDER BY " + KEY_DRUGS_ID + " DESC",
+                null);
+
+        return cursor;
+    }
+
+    //date param must be in format yyyy-mm-dd
+    public Cursor getDrugsByPeriod(String period) {
+
+        Cursor cursor = getReadableDatabase().rawQuery("SELECT * FROM " + TABLE_DRUGS
+                        + " WHERE " + KEY_DRUGS_TIME + " LIKE '" + period
+                        + "' ORDER BY " + KEY_DRUGS_ID + " DESC",
+                null);
+
+        return cursor;
+    }
+
+
+    public Cursor getDrugsByRecent() {
+        Cursor cursor = getReadableDatabase().rawQuery("SELECT * FROM " + TABLE_DRUGS
+                        + " ORDER BY " + KEY_DRUGS_DATE + " DESC , " + KEY_DRUGS_ID + " DESC",
+                null);
+
+        return cursor;
+    }
 
 }
