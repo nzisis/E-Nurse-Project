@@ -1,6 +1,6 @@
 E-nurse Android Application
 ======================
-Developers : Miltos Nedelkos, Nikos Zisis, Nikos Stampoulis
+Developers : Nikos Zisis, Nikos Stampoulis
 
 Language : Greek
 
