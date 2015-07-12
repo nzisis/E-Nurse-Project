@@ -1,7 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
 body{
-	background-color: #C6FFFF;
+	background-color: #CCFFFF;
 }
 a {
 	text-decoration: underline;
@@ -85,7 +85,7 @@ p{
 .announcement{
 	padding: 5px;
 	width: 100%;
-	background-color: rgba(0,0,0,0.1);
+	background-color: rgba(0,51,204,0.1);
 	margin: 10px;
 	line-height: 160%;
 }
@@ -110,7 +110,7 @@ h2{
 	border-color: rgba(0,102,255,0.3);
 }
 .info{
-	display: block;
+	font-size: 14px;
 	color: #33F;
 	text-align: center;
 	margin: 5px;

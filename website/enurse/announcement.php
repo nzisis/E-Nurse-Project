@@ -37,7 +37,7 @@
 			$subject = $row["title"];
 			$text = $row["text"];
 			echo "<div class='announcement' id='anc$id'>";
-			echo "<h2>Ανακοίνωση $date </h2>";
+			echo "<h2>Ανακοίνωση <span class='info'>$date</span></h2>";
 			echo "<strong>$subject</strong><br>";
 			echo "$text";
 			echo "</div>";

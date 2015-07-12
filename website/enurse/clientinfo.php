@@ -46,6 +46,7 @@
 				$age = $rowClientCard["age"];
 				$male = intval($rowClientCard["male"]);
 				$weight = intval($rowClientCard["weight"]);
+				$height = intval($rowClientCard["height"]);
 				$history = $rowClientCard["history"];
 				if($history != NULL) $historyItems = explode("-",$history);
 				else $historyItems = NULL;
@@ -59,7 +60,8 @@
 				}
 				echo "</span>";
 				echo "<span class='patientCardItem'>Ηλικία: $age</span>";
-				echo "<span class='patientCardItem'>Βάρος: $weight</span><br>";
+				echo "<span class='patientCardItem'>Βάρος: $weight</span>";
+				echo "<span class='patientCardItem'>Ύψος: $height</span><br>";
 				echo "<span class='patientCardName'>Ιστορικό</span>";
 				if($historyItems != NULL & sizeof($historyItems) > 0){
 					foreach($historyItems as $hitem){
@@ -68,7 +70,7 @@
 				} else {
 					echo "<span class='patientCardItem'>Ο πελάτης δεν έχει ιστορικό</span>";
 				}
-				echo "<br>[<a href='clientinfo.php?client=".$_GET["client"]."&exercise=1'>Ασκήσεις</a>] [<a href='clientinfo.php?client=".$_GET["client"]."&nutrition=1'>Διατροφή</a>]";
+				echo "<br>[<a href='clientinfo.php?client=".$_GET["client"]."&exercise=1'>Ασκήσεις</a>] [<a href='clientinfo.php?client=".$_GET["client"]."&nutrition=1'>Διατροφή</a>] [<a href='clientinfo.php?client=".$_GET["client"]."&drugs=1'>Φάρμακα</a>]";
 				echo "</span>";
 			} else {
 				echo "Δεν βρέθηκαν τα στοιχεία του ασθενούς. Παρακαλούμε επικοινωνήστε με τη τεχνική υποστήριξη.";
@@ -78,7 +80,7 @@
 				$sqlinfo = "SELECT * FROM exercise WHERE clientID=".$_GET["client"];
 				$resultinfo = $conn->query($sqlinfo);
 				if($resultinfo->num_rows > 0){
-					echo "<span class='info'>Ασκήσεις</span>";
+					echo "<center><h2>Ασκήσεις</h2></center>";
 					while($rowinfo = $resultinfo->fetch_assoc()) {
 						$id = $rowinfo["id"];
 						$date = $rowinfo["date"];
@@ -86,7 +88,7 @@
 						$duration = $rowinfo["duration"];
 						
 						echo "<div class='announcement' id='exc$id'>";
-						echo "<h3>Άσκηση $date</h3>";
+						echo "<h2>Άσκηση <span class='info'>$date</span></h2>";
 						echo "<strong>Τύπος:</strong> $type<br>";
 						echo "<strong>Διάρκεια:</strong> $duration λεπτά.<br>";
 						echo "</div>";
@@ -98,7 +100,7 @@
 				$sqlinfo = "SELECT * FROM nutrition WHERE clientID=".$_GET["client"];
 				$resultinfo = $conn->query($sqlinfo);
 				if($resultinfo->num_rows > 0){
-					echo "<span class='info'>Διατροφή</span>";
+					echo "<center><h2>Διατροφή</h2></center>";
 					while($rowinfo = $resultinfo->fetch_assoc()) {
 						$id = $rowinfo["id"];
 						$date = $rowinfo["date"];
@@ -106,9 +108,42 @@
 						$mealTime = $rowinfo["mealTime"];
 						
 						echo "<div class='announcement' id='food$id'>";
-						echo "<h3>Γεύμα $date</h3>";
+						echo "<h2>Γεύμα <span class='info'>$date</span></h2>";
 						echo "<strong>Γεύμα:</strong> $meal<br>";
 						echo "<strong>Ώρα γεύματος:</strong> $mealTime.<br>";
+						echo "</div>";
+					}
+				} else {
+					echo "Ο ασθενής δεν έχει εισάγει ακόμη γεύματα στο λογαριασμό του.";
+				}
+			} else if(isset($_GET["drugs"])){
+				$sqlinfo = "SELECT * FROM drugs WHERE clientID=".$_GET["client"];
+				$resultinfo = $conn->query($sqlinfo);
+				if($resultinfo->num_rows > 0){
+					echo "<center><h2>Φάρμακα</h2></center>";
+					while($rowinfo = $resultinfo->fetch_assoc()) {
+						$id = $rowinfo["id"];
+						$name = $rowinfo["name"];
+						$time = $rowinfo["time"];
+						$date = $rowinfo["date"];
+						$reason = $rowinfo["reason"];
+						$quantity = $rowinfo["quantity"];
+						
+						echo "<div class='announcement' id='drug$id'>";
+						echo "<h2>Φάρμακο <span class='info'>$date</span></h2>";
+						echo "<strong>Φάρμακο:</strong> $name<br>";
+						if($time == "Morning"){
+							$timeGr = "Πρωί";
+						} else
+						if($time == "Midday"){
+							$timeGr = "Μεσημέρι";
+						} else
+						if($time == "Noon"){
+							$timeGr = "Απόγευμα";
+						}
+						echo "<strong>Ώρα λήψης:</strong> $timeGr.<br>";
+						echo "<strong>Ποσότητα:</strong> $quantity.<br>";
+						echo "<strong>Αιτιολογία:</strong> $reason.<br>";
 						echo "</div>";
 					}
 				} else {

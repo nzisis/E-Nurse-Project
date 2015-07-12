@@ -22,23 +22,6 @@
 		echo "<span class='error'>Πρέπει πρώτα να συνδεθείτε με το λογαριασμό σας.</span><br>";
 	}
 ?>
-<form action="login.php" method="POST">
-<table width="50%" border="0">
-  <tr>
-    <td style="text-align: right">Όνομα λογαριασμού:</td>
-    <td><input type="text" name="login_name" size="20"></td>
-  </tr>
-  <tr>
-    <td style="text-align: right">Κωδικός</td>
-    <td><input type="password" name="login_password" size="20"></td>
-  </tr>
-</table>
-<br>
-<input type="submit" value="Είσοδος"> 
-</form><br>
-<form action="create.php" method="POST">
-<input type="submit" value="Δημιουργία Λογαριασμού">
-</form>
 <?php
 	if(isset($_POST['create_username'])){
 		$conn = dbConn();
@@ -130,6 +113,23 @@
 		}
 	}
 ?>
+<form action="login.php" method="POST">
+<table width="50%" border="0">
+  <tr>
+    <td style="text-align: right">Όνομα λογαριασμού:</td>
+    <td><input type="text" name="login_name" size="20"></td>
+  </tr>
+  <tr>
+    <td style="text-align: right">Κωδικός</td>
+    <td><input type="password" name="login_password" size="20"></td>
+  </tr>
+</table>
+<br>
+<input type="submit" value="Είσοδος"> 
+</form><br>
+<form action="create.php" method="POST">
+<input type="submit" value="Δημιουργία Λογαριασμού">
+</form>
 </center>
 </div>
 </body>

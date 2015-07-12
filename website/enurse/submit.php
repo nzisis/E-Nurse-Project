@@ -70,6 +70,32 @@
 				die();
 			}
 		}
+	} else if(isset($_GET["drug"])){
+		if($_SESSION['LoggedRole'] == "doctor"){
+			echo "Αυτή η ενέργεια είναι διαθέσιμη μόνο για ασθενείς.";
+			die();
+		} else {
+			if(isset($_POST["form_drugName"]) && isset($_POST["form_drugTime"]) && isset($_SESSION["userID"])){
+				$userid = $_SESSION["userID"];
+				$name = $_POST["form_drugName"];
+				$time = $_POST["form_drugTime"];
+				$date = $_POST["form_drugDate"];
+				$quantity = $_POST["form_drugQuantity"];
+				$reason = $_POST["form_drugReason"];
+				$sql = "INSERT INTO drugs (clientID,name,time,date,reason,quantity) VALUES ($userid,N'$name','$time','$date',N'$reason',N'$quantity')";
+				$conn = dbConn();
+				$result = $conn -> query($sql);
+				if($result){
+					echo "Η λήψη φαρμάκου προστέθηκε.";
+				} else {
+					echo "Δεν ήταν επιτυχής η προσθήκη της λήψης φαρμάκου.";
+				}
+				$conn -> close();
+			} else {
+				echo "Δεν στάλθηκαν στοιχεία.";
+				die();
+			}
+		}
 	}
 ?>
 <span class="returnTop"><a name="top" href="#top">Top</a></span>

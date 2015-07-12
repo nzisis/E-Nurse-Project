@@ -40,7 +40,7 @@
 		$resultDoc = $conn->query($sqlDoc);
 		if($resultDoc->num_rows > 0){
 			$row = $resultDoc->fetch_assoc();
-			echo "Είσαστε υπό επίβλεψη του/της Δρ.".$row["surname"]."<br>";
+			echo "<center>Είσαστε υπό επίβλεψη του/της Δρ.".$row["surname"]."</center><br>";
 		} else {
 			echo "Δεν βρέθηκαν τα στοιχεία του γιατρού που σας έχει αναλάβει. Παρακαλώ επικοινωνήστε με τη τεχνική υποστήριξη.<br>";
 		}
@@ -67,7 +67,7 @@
 			$mealTime = $row["mealTime"];
 			
 			echo "<div class='announcement' id='food$id'>";
-			echo "<h3>Γεύμα $date</h3>";
+			echo "<h2>Γεύμα <span class='info'>$date</span></h2>";
 			echo "<strong>Γεύμα:</strong> $meal<br>";
 			echo "<strong>Ώρα γεύματος:</strong> $mealTime.<br>";
 			echo "</div>";

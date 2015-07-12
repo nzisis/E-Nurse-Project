@@ -16,6 +16,7 @@ echo '<div class="menu">
 if(isset($_SESSION["LoggedRole"])){
 	if($_SESSION["LoggedRole"] == "client"){
 		echo '<li class="menuButton"><a href="profile.php"'.isCurrent("/profile.php").'>Προφίλ</a></li>
+		<li class="menuButton"><a href="drugs.php"'.isCurrent("/drugs.php").'>Φάρμακα</a></li>
 		<li class="menuButton"><a href="exercise.php"'.isCurrent("/exercise.php").'>Άσκηση</a></li>
 		<li class="menuButton"><a href="nutrition.php"'.isCurrent("/nutrition.php").'>Διατροφή</a></li>';
 	} else if($_SESSION["LoggedRole"] == "doctor"){

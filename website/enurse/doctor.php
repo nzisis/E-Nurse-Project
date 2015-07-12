@@ -42,7 +42,7 @@
 				$rowDoc = $resultDoc->fetch_assoc();
 				$name = $rowDoc["name"];
 				$surname = $rowDoc["surname"];
-				echo "<div>$name $surname [<a href='clientinfo.php?client=".$row["clientID"]."&exercise=1'>Ασκήσεις</a>] [<a href='clientinfo.php?client=".$row["clientID"]."&nutrition=1'>Διατροφή</a>]</div>";
+				echo "<div>$name $surname [<a href='clientinfo.php?client=".$row["clientID"]."&exercise=1'>Ασκήσεις</a>] [<a href='clientinfo.php?client=".$row["clientID"]."&nutrition=1'>Διατροφή</a>] [<a href='clientinfo.php?client=".$row["clientID"]."&drugs=1'>Φάρμακα</a>]</div>";
 			} else {
 				echo "Δεν βρέθηκαν τα στοιχεία του ασθενή ".$row['clientID'].". Παρακαλώ επικοινωνήστε με τη τεχνική υποστήριξη.<br>";
 			}
