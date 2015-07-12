@@ -1,13 +1,13 @@
 E-nurse Website
 ======================
-Developers : Miltos Nedelkos, Nikos Zisis, et al (2015)
+Developers : Miltos Nedelkos, Nikos Zisis, Nikos Stampoulis
 
 Language : Greek
 
-Programming Language(s) : PHP, HTML, CSS, SQL
+Programming Language(s) : Java, XML
 
 Date: 2015, July
 
-Usage : Used as an alternative terminal to the application "E-nurse", which is a tool that gives a doctor the ability to watch over his patient's nutrition, excercise and drug intake.  
+Usage : Mobile android application "E-nurse" is a tool that gives a doctor the ability to watch over his patient's nutrition, excercise and drug intake.  
 
-Development Tools : Adobe Dreamweaver CS6, XAMPP
+Development Tools : Android Studio
