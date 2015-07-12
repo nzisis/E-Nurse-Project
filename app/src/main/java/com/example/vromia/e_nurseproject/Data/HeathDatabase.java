@@ -20,6 +20,7 @@ public class HeathDatabase extends SQLiteOpenHelper {
     private static final String TABLE_DIET = "Diet";
     private static final String TABLE_WORKOUT = "Workout";
     private static final String TABLE_DOCTORS = "Doctors";
+    private static final String TABLE_DRUGS = "Drugs";
 
     //Table Diet columns
     private static final String KEY_DIET_ID = "_id";
@@ -34,6 +35,15 @@ public class HeathDatabase extends SQLiteOpenHelper {
     private static final String KEY_WORKOUT_CATEGORY = "category";
     private static final String KEY_WORKOUT_TIME = "workTime";
     private static final String KEY_WORKOUT_PERIOD = "period";
+
+
+    //Table Drugs columns
+    private static final String KEY_DRUGS_ID = "_id";
+    private static final String KEY_DRUGS_CATEGORY = "category";
+    private static final String KEY_DRUGS_DATE = "date";
+    private static final String KEY_DRUGS_QUANTITY = "quantity";
+    private static final String KEY_DRUGS_TIME = "period";
+    private static final String KEY_DRUGS_CAUSE="cause";
 
     //Table Doctors columns
     private static final String Key_Did = "id";
@@ -51,6 +61,11 @@ public class HeathDatabase extends SQLiteOpenHelper {
             Key_Dname + " TEXT NOT NULL," + Key_Dsurname + " TEXT NOT NULL" + ")";
 
 
+    private static final String Create_Drugs_Table = "CREATE TABLE " + TABLE_DRUGS + "(" + KEY_DRUGS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+            KEY_DRUGS_CATEGORY + " TEXT NOT NULL," + KEY_DRUGS_DATE + " TEXT NOT NULL," + KEY_DRUGS_QUANTITY + " DOUBLE," + KEY_DRUGS_TIME + " TEXT NOT NULL,"+
+            KEY_DRUGS_CAUSE+ " TEXT NOT NULL" + ")";
+
+
     private SQLiteDatabase db;
 
 
@@ -62,6 +77,7 @@ public class HeathDatabase extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(Create_Diet_Table);
+        db.execSQL(Create_Drugs_Table);
         db.execSQL(Create_Workout_Table);
         db.execSQL(Create_Doctor_Table);
     }
@@ -72,6 +88,7 @@ public class HeathDatabase extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_DIET);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_WORKOUT);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_DOCTORS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_DRUGS);
 
         onCreate(db);
 
@@ -104,6 +121,18 @@ public class HeathDatabase extends SQLiteOpenHelper {
 
         db.insert(TABLE_WORKOUT, null, cv);
         Log.i("nikos", "workout inserted");
+    }
+
+    public void InsertDrugs(DrugsItem item) {
+        ContentValues cv = new ContentValues();
+        cv.put(KEY_DRUGS_CATEGORY, item.getCategory());
+        cv.put(KEY_DRUGS_DATE, item.getDate());
+        cv.put(KEY_DRUGS_QUANTITY, item.getQuantity());
+        cv.put(KEY_DRUGS_TIME, item.getPeriodOfDay());
+        cv.put(KEY_DRUGS_CAUSE,item.getCause());
+
+        db.insert(TABLE_DRUGS, null, cv);
+        Log.i("nikos", "Drugs inserted");
     }
 
     public void InsertDoctor(DoctorItem item) {
@@ -179,6 +208,11 @@ public class HeathDatabase extends SQLiteOpenHelper {
                 null);
     }
 
+
+    public Cursor getAllDrugsItems() {
+        return getReadableDatabase().rawQuery("SELECT * FROM " + TABLE_DRUGS,
+                null);
+    }
 
     public Cursor getDietByRecent() {
 

@@ -1,0 +1,273 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app_background">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/llCategory"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+
+                <me.grantland.widget.AutofitTextView
+                    android:id="@+id/tvCat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.6"
+                    android:padding="10dp"
+                    android:text="Φάρμακο:"
+                    android:textColor="#de000000"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+
+                <Spinner
+                    android:id="@+id/spChooseEx"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.4"
+
+                    />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/line_separator" />
+
+
+            <LinearLayout
+                android:id="@+id/llQuant"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+
+                <me.grantland.widget.AutofitTextView
+                    android:id="@+id/tvQuantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.6"
+                    android:lines="2"
+                    android:padding="10dp"
+                    android:text="Δοσολογία   (σε ml)"
+                    android:textColor="#de000000"
+                    android:textSize="20sp"
+                    android:textStyle="italic" />
+
+
+                <EditText
+                    android:id="@+id/etDuration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.4"
+                    android:editable="false"
+                    android:ems="10"
+                    android:hint="10"
+                    android:inputType="number"
+                    android:textColor="#de000000" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/line_separator" />
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_marginTop="20dp"
+                >
+
+                <me.grantland.widget.AutofitTextView
+                    android:id="@+id/tvCause"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.6"
+                    android:padding="10dp"
+                    android:text="Αιτία Συν/σης:"
+                    android:textColor="#de000000"
+                    android:textSize="20sp"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:id="@+id/etCause"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.4"
+                    android:editable="false"
+                    android:ems="10"
+                    android:hint="Πονοκέφαλος"
+                    android:inputType="text"
+                    android:textColor="#de000000"
+
+                    />
+
+
+
+            </LinearLayout>
+
+
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/line_separator" />
+
+
+            <me.grantland.widget.AutofitTextView
+                android:id="@+id/tvPeriod"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Περίοδος Κατανάλωσης"
+                android:textColor="#de000000"
+                android:textSize="20sp"
+                android:textStyle="italic" />
+
+            <LinearLayout
+                android:id="@+id/lltod"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <RadioGroup
+                    android:id="@+id/rdtod"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+
+                    >
+
+                    <RadioButton
+                        android:id="@+id/rbMorn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.3"
+                        android:text="Πρωί"
+                        android:textColor="#de000000"
+                        android:textSize="20sp" />
+
+                    <RadioButton
+                        android:id="@+id/rbNoon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.3"
+                        android:text="Μεσημέρι"
+                        android:textColor="#de000000"
+                        android:textSize="20sp" />
+
+                    <RadioButton
+                        android:id="@+id/rbNight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.3"
+                        android:text="Βράδυ"
+                        android:textColor="#de000000"
+                        android:textSize="20sp" />
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/line_separator" />
+
+            <LinearLayout
+                android:id="@+id/lldate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <me.grantland.widget.AutofitTextView
+                    android:id="@+id/tvDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.3"
+                    android:padding="10dp"
+                    android:text="Ημερομηνία:"
+                    android:textColor="#de000000"
+                    android:textSize="20sp"
+                    android:textStyle="italic" />
+
+                <ImageButton
+                    android:id="@+id/imbtDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="0.7" />
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btBack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="#e51616"
+            android:text="Back" />
+
+        <Button
+            android:id="@+id/btOk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@color/YellowGreen"
+            android:text="Ok" />
+
+    </LinearLayout>
+
+</RelativeLayout>

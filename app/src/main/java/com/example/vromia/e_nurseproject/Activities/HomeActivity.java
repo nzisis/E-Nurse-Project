@@ -87,8 +87,10 @@ public class HomeActivity extends Activity {
 
         items.add(new GridItem(BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_food), "Διατροφή"));
         items.add(new GridItem(BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_excercise), "Άσκηση"));
+        items.add(new GridItem(BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_drugs), "Φάρμακα"));
         items.add(new GridItem(BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_profile), "Προφίλ"));
         items.add(new GridItem(BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_history), "Ιστορικό"));
+        items.add(new GridItem(BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_drugs_history), "Ιστορικό Φαρμάκων"));
         items.add(new GridItem(BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_settings), "Ρυθμίσεις"));
         items.add(new GridItem(BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_exit), "Έξοδος"));
 
@@ -104,14 +106,18 @@ public class HomeActivity extends Activity {
                 } else if (position == 1) {
                     startActivity(new Intent(HomeActivity.this, WorkoutActivity.class));
                 } else if (position == 2) {
+                    startActivity(new Intent(HomeActivity.this, DrugsActivity.class));
+                } else if (position == 3) {
                     Intent intent=new Intent(HomeActivity.this, UserDetailsActivity.class);
                     intent.putExtra("Menu","menu");
                     startActivity(intent);
-                } else if (position == 3) {
-                    startActivity(new Intent(HomeActivity.this, HistoryActivity.class));
                 } else if (position == 4) {
-                    startActivity(new Intent(HomeActivity.this, SettingsActivity.class));
+                    startActivity(new Intent(HomeActivity.this, HistoryActivity.class));
                 } else if (position == 5) {
+
+                }else if(position == 6){
+                    startActivity(new Intent(HomeActivity.this, SettingsActivity.class));
+                }else if(position == 7){
                     finish();
                 }
             }

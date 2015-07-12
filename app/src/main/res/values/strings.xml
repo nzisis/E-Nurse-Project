@@ -19,6 +19,13 @@
         <item>Sex</item>
     </string-array>
 
+    <string-array name="drugNames">
+        <item>Depon</item>
+        <item>Panadol</item>
+        <item>Xanax</item>
+        <item>Vicodin</item>
+    </string-array>
+
     <string-array name="actions">
         <item>Ιστορικό</item>
         <item>Στοιχεία</item>

@@ -27,6 +27,7 @@
         <activity android:name=".Activities.WorkoutActivity" />
         <activity android:name=".Activities.SettingsActivity" />
         <activity android:name=".Activities.HomeActivity"/>
+        <activity android:name=".Activities.DrugsActivity"/>
         <!--<activity-->
             <!--android:name=".Activities.LoginActivity"-->
             <!--android:label="@string/title_activity_login" >-->
