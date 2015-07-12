@@ -1,4 +1,4 @@
-E-nurse Website
+E-nurse Android Application
 ======================
 Developers : Miltos Nedelkos, Nikos Zisis, Nikos Stampoulis
 
