@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
-<title>E-nurse - Διατροφή</title>
+<title>E-nurse - Φάρμακα</title>
 <link rel="stylesheet" type="text/css" href="mainstyle.css">
 </head>
 
