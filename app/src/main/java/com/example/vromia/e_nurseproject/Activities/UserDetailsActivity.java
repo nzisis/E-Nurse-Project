@@ -61,7 +61,7 @@ public class UserDetailsActivity extends Activity {
     private int cuSuccess = -1;
     private int sex = -1;
     private String userName, userSurname, history;
-    private int age, male, weight;
+    private int age, male, weight,height;
     private String menu;
 
     private static String user_details_url = "http://nikozisi.webpages.auth.gr/enurse/get_user_details.php";
@@ -74,6 +74,7 @@ public class UserDetailsActivity extends Activity {
     private static final String TAG_WEIGHT = "weight";
     private static final String TAG_CUSUCCESS = "success";
     private static final String TAG_ID = "userID";
+    private static final String TAG_HEIGHT = "height";
 
     private JSONParser jsonParser;
     private ProgressDialog pDialog;
@@ -363,6 +364,7 @@ public class UserDetailsActivity extends Activity {
                 spmanager.setPrefsIlikia(Integer.parseInt(Silikia));
 //                spmanager.setPrefsYpsos(Float.parseFloat(Sypsos));
                 spmanager.setPrefsBaros(Float.parseFloat(Sbaros));
+                spmanager.setPrefsYpsos(Float.parseFloat(Sypsos));
                 spmanager.setPrefsIstorikoPathiseon(SistorikoPathiseon);
                 spmanager.setPrefsFylo(Sfylo);
 
@@ -422,6 +424,8 @@ public class UserDetailsActivity extends Activity {
                     male = json.getInt(TAG_MALE);
                     history = json.getString(TAG_HISTORY);
                     weight = json.getInt(TAG_WEIGHT);
+                    height=json.getInt(TAG_HEIGHT);
+
 
                     Log.i("values", age + " - " + male + " - " + history + " - " + weight);
 
@@ -451,6 +455,7 @@ public class UserDetailsActivity extends Activity {
 
 //            istorikoPathiseon.setText(history);
             baros.setText(weight + "");
+            ypsos.setText(height+"");
 
         }
 
@@ -472,6 +477,7 @@ public class UserDetailsActivity extends Activity {
             params.add(new BasicNameValuePair("male", sex + ""));
 //            params.add(new BasicNameValuePair("history", istorikoPathiseon.getText().toString()));
             params.add(new BasicNameValuePair("weight", Float.parseFloat(baros.getText().toString()) + ""));
+            params.add(new BasicNameValuePair("height", Float.parseFloat(ypsos.getText().toString()) + ""));
 
             String doctor_full_name = sDoctors.getSelectedItem().toString();
             String tokens[] = doctor_full_name.split(" ");
