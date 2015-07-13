@@ -118,7 +118,21 @@
                     android:textSize="20sp"
                     android:textStyle="italic" />
 
-                <EditText
+                <!--<EditText-->
+                    <!--android:id="@+id/etCause"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:layout_weight="0.4"-->
+                    <!--android:editable="false"-->
+                    <!--android:ems="10"-->
+                    <!--android:hint="Πονοκέφαλος"-->
+                    <!--android:inputType="text"-->
+                    <!--android:textColor="#de000000"-->
+
+                    <!--/>-->
+
+                <AutoCompleteTextView
                     android:id="@+id/etCause"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

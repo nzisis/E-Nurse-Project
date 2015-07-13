@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -14,8 +15,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.doomonafireball.betterpickers.calendardatepicker.CalendarDatePickerDialog;
-import com.example.vromia.e_nurseproject.Data.HeathDatabase;
 import com.example.vromia.e_nurseproject.Data.DrugsItem;
+import com.example.vromia.e_nurseproject.Data.HeathDatabase;
 import com.example.vromia.e_nurseproject.R;
 
 import java.util.ArrayList;
@@ -34,9 +35,13 @@ public class DrugsActivity extends FragmentActivity {
     private Button bBack;
     private Button bOk;
     private EditText quantField,etCause;
+    AutoCompleteTextView textView;
     private Spinner spinner;
     private CalendarDatePickerDialog cdate;//gui for showing date
     private String date, tod;
+
+
+    String[] name = {"Πονοκέφαλος", "Ημικρανία", "Πονόλαιμος", "Πόνοι Περιόδου", "Πίεση", "Κάψιμο", "Πυρετός", "Ναυτία"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +61,8 @@ public class DrugsActivity extends FragmentActivity {
         ArrayAdapter adapter = new ArrayAdapter(DrugsActivity.this, R.layout.spinner_item, R.id.tvSpinnerCategories, finalCategories);
         spinner.setAdapter(adapter);
 
+
+
         Calendar c = Calendar.getInstance();
         cdate = CalendarDatePickerDialog.newInstance(listener,
                 c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
@@ -71,7 +78,7 @@ public class DrugsActivity extends FragmentActivity {
         }
 
         date = c.get(Calendar.YEAR) + "-" + month + "-" + day;
-        tod = "����";
+        tod = "Πρωί";
         bMorn.setChecked(true);
     }
 
@@ -82,11 +89,17 @@ public class DrugsActivity extends FragmentActivity {
         rGroup = (RadioGroup) findViewById(R.id.rdtod);
         bDate = (ImageButton) findViewById(R.id.imbtDate);
         quantField = (EditText) findViewById(R.id.etDuration);
-        etCause=(EditText) findViewById(R.id.etCause);
+//        etCause=(EditText) findViewById(R.id.etCause);
+        textView = (AutoCompleteTextView) findViewById(R.id.etCause);
         spinner = (Spinner) findViewById(R.id.spChooseEx);
         bBack = (Button) findViewById(R.id.btBack);
         bOk = (Button) findViewById(R.id.btOk);
 
+
+
+        ArrayAdapter<String> causesAdapter = new ArrayAdapter<String> (this,android.R.layout.simple_dropdown_item_1line,name);
+        textView.setThreshold(3);
+        textView.setAdapter(causesAdapter);
 
         bDate.setImageResource(R.drawable.calendar);
 
@@ -97,21 +110,21 @@ public class DrugsActivity extends FragmentActivity {
         bMorn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tod = "����";
+                tod = "Πρωί";
             }
         });
 
         bNoon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tod = "��������";
+                tod = "Μεσημέρι";
             }
         });
 
         bNight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tod = "�����";
+                tod = "Βράδυ";
             }
         });
 
@@ -139,13 +152,14 @@ public class DrugsActivity extends FragmentActivity {
                 } catch (NumberFormatException e) {
                     Toast.makeText(DrugsActivity.this, "Plz insert a numeric value", Toast.LENGTH_LONG);
                 }
-                String cause=etCause.getText().toString();
+//                String cause = etCause.getText().toString();
+                String cause = textView.getText().toString();
                 HeathDatabase db = new HeathDatabase(DrugsActivity.this);//instance of current database
                 DrugsItem item = new DrugsItem(exName, date, quantity, tod,cause);
                 Log.i("msg", exName + " " + date + " " + quantity + " " + tod);
                 db.InsertDrugs(item);
                 db.close();
-                Toast.makeText(DrugsActivity.this, "�������� ��������", Toast.LENGTH_LONG).show();
+                Toast.makeText(DrugsActivity.this, "Εισαγωγή επιτυχής", Toast.LENGTH_LONG).show();
                 finish();
 
             }
