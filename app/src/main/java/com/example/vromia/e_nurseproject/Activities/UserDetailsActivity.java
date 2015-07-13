@@ -12,13 +12,11 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -310,7 +308,7 @@ public class UserDetailsActivity extends Activity {
                 Sbaros = String.valueOf(baros.getText());
                 Ssurname = String.valueOf(etSurname.getText());
                 SistorikoPathiseon = "";
-                if(menu!=null){
+                if(menu!=null && SistorikoPathiseon.length()>0){
                     for (int i = 0; i < diseases.size(); i++) {
                         if (!diseases.get(i).trim().equals("")) {
                             SistorikoPathiseon += diseases.get(i) + "-";
