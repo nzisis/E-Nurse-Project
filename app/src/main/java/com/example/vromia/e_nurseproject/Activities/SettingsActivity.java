@@ -17,9 +17,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.vromia.e_nurseproject.Data.DietItem;
 import com.example.vromia.e_nurseproject.Data.HeathDatabase;
-import com.example.vromia.e_nurseproject.Data.WorkoutItem;
 import com.example.vromia.e_nurseproject.R;
 import com.example.vromia.e_nurseproject.Utils.JSONParser;
 import com.example.vromia.e_nurseproject.Utils.SharedPrefsManager;
@@ -290,6 +288,15 @@ public class SettingsActivity extends PreferenceActivity {
         }
     }
 
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
+
+        if (PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this).getBoolean("key_animations", false))
+            overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
+    }
 
 
 

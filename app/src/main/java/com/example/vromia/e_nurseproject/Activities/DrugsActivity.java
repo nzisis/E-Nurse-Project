@@ -184,4 +184,12 @@ public class DrugsActivity extends FragmentActivity {
             date = i + "-" + month + "-" + day;
         }
     };
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
+        overridePendingTransition(R.anim.pull_in_left , R.anim.push_out_right);
+    }
 }

@@ -9,6 +9,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,7 +17,6 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import com.example.vromia.e_nurseproject.Data.DietItem;
-import com.example.vromia.e_nurseproject.Data.DoctorItem;
 import com.example.vromia.e_nurseproject.Data.GridItem;
 import com.example.vromia.e_nurseproject.Data.HeathDatabase;
 import com.example.vromia.e_nurseproject.Data.WorkoutItem;
@@ -42,23 +42,23 @@ public class HomeActivity extends Activity {
     private GridView gridView;
     private ArrayList<GridItem> items;
 
-    private  HeathDatabase db;
+    private HeathDatabase db;
 
     private static String url = "http://nikozisi.webpages.auth.gr/enurse/get_data.php";
     private JSONParser jsonParser;
     private ArrayList<DietItem> dietItems;
     private ArrayList<WorkoutItem> workoutItems;
 
-    private boolean updateDiet=false,updateWorkout=false;
+    private boolean updateDiet = false, updateWorkout = false;
 
     private static final String TAG_DIET = "nutrition";
     private static final String TAG_MEALTIME = "mealTime";
     private static final String TAG_DATE = "date";
     private static final String TAG_MEAL = "meal";
 
-    private static final String TAG_WORKOUT= "exercise";
-    private static final String TAG_TYPE= "type";
-    private static final String TAG_DURATION= "duration";
+    private static final String TAG_WORKOUT = "exercise";
+    private static final String TAG_TYPE = "type";
+    private static final String TAG_DURATION = "duration";
 
 
     @Override
@@ -67,19 +67,17 @@ public class HomeActivity extends Activity {
         setContentView(R.layout.activity_home);
 
 
-        if(haveNetworkConnection()){
+        if (haveNetworkConnection()) {
 
-            jsonParser=new JSONParser();
-            dietItems=new ArrayList<>();
-            workoutItems=new ArrayList<>();
-            db=new HeathDatabase(HomeActivity.this);
+            jsonParser = new JSONParser();
+            dietItems = new ArrayList<>();
+            workoutItems = new ArrayList<>();
+            db = new HeathDatabase(HomeActivity.this);
 
             new SyncWebData().execute();
 
 
         }
-
-
 
 
         gridView = (GridView) findViewById(R.id.gridview);
@@ -103,28 +101,41 @@ public class HomeActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0) {
                     startActivity(new Intent(HomeActivity.this, DietActivity.class));
+                    if (PreferenceManager.getDefaultSharedPreferences(HomeActivity.this).getBoolean("key_animations", false))
+                        overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
                 } else if (position == 1) {
                     startActivity(new Intent(HomeActivity.this, WorkoutActivity.class));
+                    if (PreferenceManager.getDefaultSharedPreferences(HomeActivity.this).getBoolean("key_animations", false))
+                        overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
                 } else if (position == 2) {
                     startActivity(new Intent(HomeActivity.this, DrugsActivity.class));
+                    if (PreferenceManager.getDefaultSharedPreferences(HomeActivity.this).getBoolean("key_animations", false))
+                        overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
                 } else if (position == 3) {
-                    Intent intent=new Intent(HomeActivity.this, UserDetailsActivity.class);
-                    intent.putExtra("Menu","menu");
+                    Intent intent = new Intent(HomeActivity.this, UserDetailsActivity.class);
+                    intent.putExtra("Menu", "menu");
                     startActivity(intent);
+                    if (PreferenceManager.getDefaultSharedPreferences(HomeActivity.this).getBoolean("key_animations", false))
+                        overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
                 } else if (position == 4) {
                     startActivity(new Intent(HomeActivity.this, HistoryActivity.class));
+                    if (PreferenceManager.getDefaultSharedPreferences(HomeActivity.this).getBoolean("key_animations", false))
+                        overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
                 } else if (position == 5) {
                     startActivity(new Intent(HomeActivity.this, DrugsHistoryActivity.class));
-                }else if(position == 6){
+                    if (PreferenceManager.getDefaultSharedPreferences(HomeActivity.this).getBoolean("key_animations", false))
+                        overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
+                } else if (position == 6) {
                     startActivity(new Intent(HomeActivity.this, SettingsActivity.class));
-                }else if(position == 7){
+                    if (PreferenceManager.getDefaultSharedPreferences(HomeActivity.this).getBoolean("key_animations", false))
+                        overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
+                } else if (position == 7) {
                     finish();
                 }
             }
         });
 
     }
-
 
 
     private boolean haveNetworkConnection() {
@@ -146,41 +157,41 @@ public class HomeActivity extends Activity {
     }
 
 
-    class SyncWebData extends AsyncTask<String, String, String>{
+    class SyncWebData extends AsyncTask<String, String, String> {
 
         @Override
         protected String doInBackground(String... args) {
-            SharedPrefsManager manager=new SharedPrefsManager(HomeActivity.this);
-            int userID=manager.getPrefsUserID();
-            Log.i("USERID",userID+"");
+            SharedPrefsManager manager = new SharedPrefsManager(HomeActivity.this);
+            int userID = manager.getPrefsUserID();
+            Log.i("USERID", userID + "");
             List<NameValuePair> params = new ArrayList<>();
-            params.add(new BasicNameValuePair("userID", userID+""));
+            params.add(new BasicNameValuePair("userID", userID + ""));
 
             JSONObject json = jsonParser.makeHttpRequest(url, "POST", params);
 
             try {
 
-                JSONArray dietArray=json.getJSONArray(TAG_DIET);
-                JSONArray workoutArray=json.getJSONArray(TAG_WORKOUT);
+                JSONArray dietArray = json.getJSONArray(TAG_DIET);
+                JSONArray workoutArray = json.getJSONArray(TAG_WORKOUT);
 
 
-                Cursor dietCursor=db.getAllDietItems();
-                Cursor workoutCursor=db.getAllWorkoutItems();
-                if(dietCursor.getCount()!=dietArray.length()){
+                Cursor dietCursor = db.getAllDietItems();
+                Cursor workoutCursor = db.getAllWorkoutItems();
+                if (dietCursor.getCount() != dietArray.length()) {
 
-                    updateDiet=true;
+                    updateDiet = true;
 
                     for (int i = 0; i < dietArray.length(); i++) {
                         JSONObject c = dietArray.getJSONObject(i);
 
-                        String meal=c.getString(TAG_MEAL);
-                        String date=c.getString(TAG_DATE);
-                        String mealTime=c.getString(TAG_MEALTIME);
+                        String meal = c.getString(TAG_MEAL);
+                        String date = c.getString(TAG_DATE);
+                        String mealTime = c.getString(TAG_MEALTIME);
 
-                        String dateTokens[]=date.split(" ");
-                        String mealTimeTokens[]=mealTime.split(":");
+                        String dateTokens[] = date.split(" ");
+                        String mealTimeTokens[] = mealTime.split(":");
 
-                        DietItem dietItem=new DietItem(meal,dateTokens[0],1,mealTimeTokens[0]+":"+mealTimeTokens[1]);
+                        DietItem dietItem = new DietItem(meal, dateTokens[0], 1, mealTimeTokens[0] + ":" + mealTimeTokens[1]);
                         dietItems.add(dietItem);
 
                     }
@@ -189,24 +200,23 @@ public class HomeActivity extends Activity {
                 }
 
 
-                if(workoutCursor.getCount()!=workoutArray.length()){
+                if (workoutCursor.getCount() != workoutArray.length()) {
 
-                    updateWorkout=true;
+                    updateWorkout = true;
                     for (int i = 0; i < workoutArray.length(); i++) {
                         JSONObject c = workoutArray.getJSONObject(i);
 
-                        double duration=c.getDouble(TAG_DURATION);
-                        String date=c.getString(TAG_DATE);
-                        String type=c.getString(TAG_TYPE);
+                        double duration = c.getDouble(TAG_DURATION);
+                        String date = c.getString(TAG_DATE);
+                        String type = c.getString(TAG_TYPE);
 
-                        String dateTokens[]=date.split(" ");
+                        String dateTokens[] = date.split(" ");
 
 
-                        WorkoutItem item=new WorkoutItem(type,dateTokens[0],duration,dateTokens[1]);
+                        WorkoutItem item = new WorkoutItem(type, dateTokens[0], duration, dateTokens[1]);
                         workoutItems.add(item);
 
                     }
-
 
 
                 }
@@ -224,27 +234,27 @@ public class HomeActivity extends Activity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            boolean update=false;
-            if(updateDiet){
+            boolean update = false;
+            if (updateDiet) {
 
-                for(int i=0; i<dietItems.size(); i++){
-                    DietItem item=dietItems.get(i);
-                    if(!db.dietTupleExists(item.getCategory(),item.getTime())){
+                for (int i = 0; i < dietItems.size(); i++) {
+                    DietItem item = dietItems.get(i);
+                    if (!db.dietTupleExists(item.getCategory(), item.getTime())) {
                         db.InsertDiet(item);
-                        update=true;
+                        update = true;
                     }
 
                 }
 
             }
 
-            if(updateWorkout){
+            if (updateWorkout) {
 
-                for(int i=0; i<workoutItems.size(); i++){
-                    WorkoutItem workoutItem=workoutItems.get(i);
-                    if(!db.workoutTupleExists(workoutItem.getCategory(), workoutItem.getWorkTime(), workoutItem.getDate())){
+                for (int i = 0; i < workoutItems.size(); i++) {
+                    WorkoutItem workoutItem = workoutItems.get(i);
+                    if (!db.workoutTupleExists(workoutItem.getCategory(), workoutItem.getWorkTime(), workoutItem.getDate())) {
                         db.InsertWorkout(workoutItem);
-                        update=true;
+                        update = true;
                     }
 
                 }
@@ -252,8 +262,8 @@ public class HomeActivity extends Activity {
             }
 
 
-            if(update){
-                Toast.makeText(HomeActivity.this,"Πραγματοποιήθηκε ενημέρωση των δεδομένων σας",Toast.LENGTH_LONG).show();
+            if (update) {
+                Toast.makeText(HomeActivity.this, "Πραγματοποιήθηκε ενημέρωση των δεδομένων σας", Toast.LENGTH_LONG).show();
             }
 
 
@@ -262,7 +272,6 @@ public class HomeActivity extends Activity {
 
         }
     }
-
 
 
 }

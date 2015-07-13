@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.view.Menu;
@@ -197,6 +198,17 @@ public class HistoryActivity extends FragmentActivity {
     public void refreshList(Cursor cursor) {
         adapter.changeCursor(cursor);
         adapter.notifyDataSetChanged();
+    }
+
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
+
+        if (PreferenceManager.getDefaultSharedPreferences(HistoryActivity.this).getBoolean("key_animations", false))
+            overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
     }
 
 

@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -504,6 +505,16 @@ public class UserDetailsActivity extends Activity {
             return "";
         }
 
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
+
+        if (PreferenceManager.getDefaultSharedPreferences(UserDetailsActivity.this).getBoolean("key_animations", false))
+            overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
     }
 
 

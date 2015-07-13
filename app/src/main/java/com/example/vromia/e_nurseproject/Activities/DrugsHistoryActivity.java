@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.view.Menu;
@@ -97,7 +98,7 @@ public class DrugsHistoryActivity extends FragmentActivity {
             case R.id.filtersDrugsCategory:
                 categories = getResources().getStringArray(R.array.drugNames);
 
-                builder.setTitle("Κατηγορίες");
+                builder.setTitle("οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½");
 
                 builder.setItems(categories, new DialogInterface.OnClickListener() {
                     @Override
@@ -153,4 +154,12 @@ public class DrugsHistoryActivity extends FragmentActivity {
     }
 
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
+
+        if (PreferenceManager.getDefaultSharedPreferences(DrugsHistoryActivity.this).getBoolean("key_animations", false))
+            overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
+    }
 }

@@ -1,6 +1,7 @@
 package com.example.vromia.e_nurseproject.Activities;
 
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
@@ -168,4 +169,14 @@ public class WorkoutActivity extends FragmentActivity {
             date = i + "-" + month + "-" + day;
         }
     };
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
+
+        if (PreferenceManager.getDefaultSharedPreferences(WorkoutActivity.this).getBoolean("key_animations", false))
+            overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
+    }
+
 }
